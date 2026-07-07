@@ -9,12 +9,11 @@ import { CartProvider } from "@/components/cart/cart-provider";
 const iranYekan = localFont({
   src: [
     { path: "./fonts/IRANYekanXFaNum-Regular.ttf", weight: "400", style: "normal" },
-    { path: "./fonts/IRANYekanXFaNum-Medium.ttf", weight: "500", style: "normal" },
-    { path: "./fonts/IRANYekanXFaNum-DemiBold.ttf", weight: "600", style: "normal" },
     { path: "./fonts/IRANYekanXFaNum-Bold.ttf", weight: "700", style: "normal" }
   ],
   variable: "--font-iran-yekan",
-  display: "swap"
+  display: "swap",
+  preload: true
 });
 
 export const metadata: Metadata = {

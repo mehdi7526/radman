@@ -1,6 +1,50 @@
 import Link from "next/link";
-import { Droplets, ShoppingBag, ShieldCheck, Wind } from "lucide-react";
+import { Suspense } from "react";
+import { Droplets, ShoppingBag, User, Wind } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { getSession } from "@/lib/auth/session";
+
+function HeaderAuthLinks({ role }: { role: "ADMIN" | "CUSTOMER" | null }) {
+  if (role === "CUSTOMER") {
+    return (
+      <Link className="rounded-md px-4 py-2 transition hover:bg-white hover:text-primary" href="/account">
+        حساب من
+      </Link>
+    );
+  }
+
+  if (role === "ADMIN") {
+    return (
+      <Link className="rounded-md px-4 py-2 transition hover:bg-white hover:text-primary" href="/admin">
+        پنل مدیریت
+      </Link>
+    );
+  }
+
+  return (
+    <Link className="rounded-md px-4 py-2 transition hover:bg-white hover:text-primary" href="/account/login">
+      ورود
+    </Link>
+  );
+}
+
+async function HeaderAuthNav() {
+  const session = await getSession();
+  return <HeaderAuthLinks role={session?.role ?? null} />;
+}
+
+async function HeaderAuthIcon() {
+  const session = await getSession();
+  const href = session?.role === "ADMIN" ? "/admin" : session?.role === "CUSTOMER" ? "/account" : "/account/login";
+
+  return (
+    <Button asChild variant="ghost" size="icon" aria-label="حساب کاربری">
+      <Link href={href}>
+        <User className="h-5 w-5" />
+      </Link>
+    </Button>
+  );
+}
 
 export function Header() {
   return (
@@ -19,14 +63,26 @@ export function Header() {
           <Link className="rounded-md px-4 py-2 transition hover:bg-white hover:text-primary" href="/products">
             محصولات
           </Link>
-          <Link className="rounded-md px-4 py-2 transition hover:bg-white hover:text-primary" href="/checkout">
-            تسویه حساب
+          <Link className="rounded-md px-4 py-2 transition hover:bg-white hover:text-primary" href="/cart">
+            سبد خرید
           </Link>
-          <Link className="rounded-md px-4 py-2 transition hover:bg-white hover:text-primary" href="/admin">
-            ادمین
+          <Link className="rounded-md px-4 py-2 transition hover:bg-white hover:text-primary" href="/track">
+            پیگیری سفارش
           </Link>
+          <Suspense fallback={<span className="rounded-md px-4 py-2 text-slate-400">ورود</span>}>
+            <HeaderAuthNav />
+          </Suspense>
         </nav>
         <div className="flex items-center gap-2">
+          <Suspense
+            fallback={
+              <Button variant="ghost" size="icon" aria-label="حساب کاربری" disabled>
+                <User className="h-5 w-5" />
+              </Button>
+            }
+          >
+            <HeaderAuthIcon />
+          </Suspense>
           <Button asChild variant="ghost" size="icon" aria-label="سبد خرید">
             <Link href="/cart">
               <ShoppingBag className="h-5 w-5" />

@@ -37,6 +37,11 @@ const mockProvider: PaymentProvider = {
   }
 };
 
-export function getPaymentProvider() {
+export function getPaymentProvider(): PaymentProvider {
+  const provider = process.env.PAYMENT_PROVIDER ?? "mock";
+  if (provider === "mock") {
+    return mockProvider;
+  }
+
   return mockProvider;
 }

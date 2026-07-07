@@ -2,15 +2,12 @@ import Link from "next/link";
 import { ArrowLeft, BadgeCheck, Gauge, PackageCheck, ShieldCheck, Sparkles, Truck, Waves, Wind } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ProductCard } from "@/components/product/product-card";
-import { prisma } from "@/lib/db";
+import { getCachedFeaturedProducts } from "@/lib/queries/products";
+
+export const revalidate = 60;
 
 export default async function HomePage() {
-  const products = await prisma.product.findMany({
-    where: { isPublished: true },
-    include: { images: { orderBy: { sortOrder: "asc" } } },
-    orderBy: { createdAt: "desc" },
-    take: 3
-  });
+  const products = await getCachedFeaturedProducts();
 
   return (
     <>

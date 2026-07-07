@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { CheckCircle2, XCircle } from "lucide-react";
 import { verifyCheckout } from "@/app/checkout/actions";
+import { ClearCartOnSuccess } from "@/components/checkout/clear-cart-on-success";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { formatPrice } from "@/lib/format";
@@ -15,6 +16,7 @@ export default async function CheckoutResultPage({ searchParams }: ResultPagePro
 
   return (
     <div className="container flex min-h-[60vh] items-center justify-center py-12">
+      <ClearCartOnSuccess shouldClear={Boolean(result?.ok)} />
       <Card className="max-w-xl p-8 text-center">
         {result?.ok ? (
           <CheckCircle2 className="mx-auto h-16 w-16 text-emerald-500" />
@@ -33,11 +35,27 @@ export default async function CheckoutResultPage({ searchParams }: ResultPagePro
             کد پیگیری: {result.referenceId}
           </p>
         ) : (
-          <p className="mt-4 text-muted-foreground">امکان تایید پرداخت وجود نداشت.</p>
+          <p className="mt-4 text-muted-foreground">
+            {result && "error" in result && typeof result.error === "string"
+              ? result.error
+              : "امکان تایید پرداخت وجود نداشت."}
+          </p>
         )}
-        <Button asChild className="mt-8">
-          <Link href="/products">بازگشت به محصولات</Link>
-        </Button>
+        <div className="mt-8 flex flex-wrap justify-center gap-3">
+          {result?.ok ? (
+            <>
+              <Button asChild variant="outline">
+                <Link href={`/track?id=${result.orderId}`}>پیگیری سفارش</Link>
+              </Button>
+              <Button asChild variant="outline">
+                <Link href={`/account/orders/${result.orderId}`}>حساب کاربری</Link>
+              </Button>
+            </>
+          ) : null}
+          <Button asChild>
+            <Link href="/products">بازگشت به محصولات</Link>
+          </Button>
+        </div>
       </Card>
     </div>
   );

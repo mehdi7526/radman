@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { ProductImage } from "@/components/product/product-image";
 import Link from "next/link";
 import { ArrowLeft, Gauge, ShoppingBag } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -13,6 +13,7 @@ type ProductCardProps = {
     price: number;
     inventory: number;
     images: { url: string; alt: string }[];
+    category?: { name: string } | null;
   };
 };
 
@@ -24,7 +25,14 @@ export function ProductCard({ product }: ProductCardProps) {
       <Link href={`/products/${product.slug}`} className="block">
         <div className="relative aspect-[4/3] overflow-hidden bg-gradient-to-br from-sky-50 to-teal-50">
           {image ? (
-            <Image src={image.url} alt={image.alt} fill className="object-cover transition-transform duration-500 hover:scale-105" />
+            <ProductImage
+              src={image.url}
+              alt={image.alt}
+              fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              loading="lazy"
+              className="object-cover transition-transform duration-500 hover:scale-105"
+            />
           ) : null}
           <span className="absolute right-4 top-4 rounded-md bg-white/90 px-3 py-1 text-xs font-bold text-sky-900 shadow-sm">
             آماده ارسال
@@ -33,6 +41,9 @@ export function ProductCard({ product }: ProductCardProps) {
       </Link>
       <div className="space-y-4 p-5">
         <div>
+          {product.category ? (
+            <p className="text-xs font-bold text-primary">{product.category.name}</p>
+          ) : null}
           <Link href={`/products/${product.slug}`} className="text-lg font-bold text-sky-950">
             {product.name}
           </Link>

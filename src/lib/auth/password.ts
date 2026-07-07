@@ -1,11 +1,22 @@
+import bcrypt from "bcryptjs";
 import { createHash, timingSafeEqual } from "crypto";
 
-export function hashPassword(password: string) {
+const BCRYPT_PREFIX = "$2";
+
+function hashLegacy(password: string) {
   return createHash("sha256").update(password).digest("hex");
 }
 
+export function hashPassword(password: string) {
+  return bcrypt.hashSync(password, 12);
+}
+
 export function verifyPassword(password: string, hash: string) {
-  const current = Buffer.from(hashPassword(password), "hex");
+  if (hash.startsWith(BCRYPT_PREFIX)) {
+    return bcrypt.compareSync(password, hash);
+  }
+
+  const current = Buffer.from(hashLegacy(password), "hex");
   const expected = Buffer.from(hash, "hex");
 
   if (current.length !== expected.length) {
@@ -13,4 +24,8 @@ export function verifyPassword(password: string, hash: string) {
   }
 
   return timingSafeEqual(current, expected);
+}
+
+export function needsRehash(hash: string) {
+  return !hash.startsWith(BCRYPT_PREFIX);
 }

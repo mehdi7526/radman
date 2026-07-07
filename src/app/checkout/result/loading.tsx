@@ -1,0 +1,5 @@
+import { ResultPageSkeleton } from "@/components/site/skeletons";
+
+export default function Loading() {
+  return <ResultPageSkeleton />;
+}

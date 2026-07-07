@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import { ProductImage } from "@/components/product/product-image";
 import Link from "next/link";
 import { Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -32,7 +32,7 @@ export function CartPage() {
         {items.map((item) => (
           <Card key={item.productId} className="grid gap-4 p-4 sm:grid-cols-[120px_1fr_auto]">
             <div className="relative aspect-square overflow-hidden rounded-md bg-muted">
-              {item.imageUrl ? <Image src={item.imageUrl} alt={item.name} fill className="object-cover" /> : null}
+              {item.imageUrl ? <ProductImage src={item.imageUrl} alt={item.name} fill className="object-cover" /> : null}
             </div>
             <div className="space-y-2">
               <Link href={`/products/${item.slug}`} className="font-bold">

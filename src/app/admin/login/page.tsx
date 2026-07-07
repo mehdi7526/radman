@@ -3,6 +3,7 @@ import { loginAdmin } from "@/app/admin/actions";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import { PasswordInput } from "@/components/ui/password-input";
 
 export const metadata: Metadata = {
   title: "ورود ادمین"
@@ -28,7 +29,7 @@ export default async function AdminLoginPage({ searchParams }: LoginPageProps) {
           </label>
           <label className="space-y-2 text-sm font-medium">
             رمز عبور
-            <Input name="password" type="password" required defaultValue="radman-admin-123" dir="ltr" />
+            <PasswordInput name="password" required defaultValue="radman-admin-123" dir="ltr" />
           </label>
           <Button className="w-full">ورود</Button>
         </form>

@@ -9,11 +9,53 @@ async function main() {
 
   await prisma.user.upsert({
     where: { email },
-    update: {},
+    update: { role: "ADMIN" },
     create: {
       email,
       name: "مدیر رادمان",
-      passwordHash: hashPassword(password)
+      passwordHash: hashPassword(password),
+      role: "ADMIN"
+    }
+  });
+
+  const categories = [
+    { slug: "water-purifier", name: "تصفیه آب", description: "دستگاه‌های تصفیه آب خانگی و اداری" },
+    { slug: "air-purifier", name: "تصفیه هوا", description: "دستگاه‌های تصفیه هوای داخل ساختمان" }
+  ];
+
+  for (const category of categories) {
+    await prisma.category.upsert({
+      where: { slug: category.slug },
+      update: category,
+      create: category
+    });
+  }
+
+  const waterCategory = await prisma.category.findUnique({ where: { slug: "water-purifier" } });
+  const airCategory = await prisma.category.findUnique({ where: { slug: "air-purifier" } });
+
+  await prisma.shippingMethod.deleteMany({
+    where: { name: { in: ["ارسال عادی", "ارسال سریع"] } }
+  });
+
+  await prisma.shippingMethod.createMany({
+    data: [
+      { name: "ارسال عادی", description: "تحویل ۳ تا ۵ روز کاری", price: 250000, sortOrder: 1, isActive: true },
+      { name: "ارسال سریع", description: "تحویل ۱ تا ۲ روز کاری", price: 450000, sortOrder: 2, isActive: true }
+    ]
+  });
+
+  await prisma.coupon.upsert({
+    where: { code: "RADMAN10" },
+    update: {},
+    create: {
+      code: "RADMAN10",
+      description: "۱۰٪ تخفیف اولین خرید",
+      discountType: "PERCENT",
+      discountValue: 10,
+      minOrderAmount: 5000000,
+      maxUses: 100,
+      isActive: true
     }
   });
 
@@ -35,6 +77,7 @@ async function main() {
       price: 12800000,
       inventory: 5,
       isPublished: true,
+      categoryId: waterCategory?.id,
       images: [
         {
           url: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Yen_Sun_Technology_YS-8103RWT_20201101.jpg/640px-Yen_Sun_Technology_YS-8103RWT_20201101.jpg",
@@ -51,6 +94,7 @@ async function main() {
       price: 9700000,
       inventory: 7,
       isPublished: true,
+      categoryId: airCategory?.id,
       images: [
         {
           url: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/%E3%83%91%E3%83%8A%E3%82%BD%E3%83%8B%E3%83%83%E3%82%AF_F-VX40H3_20160922.jpg/640px-%E3%83%91%E3%83%8A%E3%82%BD%E3%83%8B%E3%83%83%E3%82%AF_F-VX40H3_20160922.jpg",
@@ -67,6 +111,7 @@ async function main() {
       price: 15600000,
       inventory: 3,
       isPublished: true,
+      categoryId: airCategory?.id,
       images: [
         {
           url: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Sharp_FU-888SV_20061017.jpg/640px-Sharp_FU-888SV_20061017.jpg",

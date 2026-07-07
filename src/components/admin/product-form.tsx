@@ -3,7 +3,10 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { saveProduct } from "@/app/admin/actions";
 
+type Category = { id: string; name: string };
+
 type ProductFormProps = {
+  categories: Category[];
   product?: {
     id: string;
     name: string;
@@ -13,12 +16,14 @@ type ProductFormProps = {
     price: number;
     inventory: number;
     isPublished: boolean;
+    categoryId: string | null;
     images: { url: string; alt: string }[];
   };
 };
 
-export function ProductForm({ product }: ProductFormProps) {
-  const image = product?.images[0];
+export function ProductForm({ product, categories }: ProductFormProps) {
+  const imageUrls = product?.images.map((image) => image.url).join("\n") ?? "";
+  const imageAlt = product?.images[0]?.alt ?? "";
 
   return (
     <form action={saveProduct} className="space-y-4 rounded-lg border bg-white p-5">
@@ -33,6 +38,21 @@ export function ProductForm({ product }: ProductFormProps) {
           <Input name="slug" defaultValue={product?.slug} required dir="ltr" />
         </label>
       </div>
+      <label className="space-y-2 text-sm font-medium">
+        دسته‌بندی
+        <select
+          name="categoryId"
+          defaultValue={product?.categoryId ?? ""}
+          className="h-10 w-full rounded-md border border-input bg-background px-3 text-sm"
+        >
+          <option value="">بدون دسته</option>
+          {categories.map((category) => (
+            <option key={category.id} value={category.id}>
+              {category.name}
+            </option>
+          ))}
+        </select>
+      </label>
       <label className="space-y-2 text-sm font-medium">
         توضیح کوتاه
         <Input name="shortDescription" defaultValue={product?.shortDescription} required />
@@ -53,23 +73,18 @@ export function ProductForm({ product }: ProductFormProps) {
       </div>
       <div className="grid gap-4 md:grid-cols-2">
         <label className="space-y-2 text-sm font-medium">
-          انتخاب تصویر از سیستم
-          <Input name="imageFile" type="file" accept="image/*" />
+          آپلود تصاویر (چند فایل)
+          <Input name="imageFiles" type="file" accept="image/*" multiple />
         </label>
         <label className="space-y-2 text-sm font-medium">
           متن جایگزین تصویر
-          <Input name="imageAlt" defaultValue={image?.alt} />
+          <Input name="imageAlt" defaultValue={imageAlt} />
         </label>
       </div>
       <label className="space-y-2 text-sm font-medium">
-        URL تصویر فعلی یا خارجی
-        <Input name="imageUrl" defaultValue={image?.url} dir="ltr" />
+        URL تصاویر (هر خط یک URL)
+        <Textarea name="imageUrls" defaultValue={imageUrls} dir="ltr" rows={4} />
       </label>
-      {image?.url ? (
-        <p className="rounded-md bg-muted px-3 py-2 text-xs text-muted-foreground" dir="ltr">
-          {image.url}
-        </p>
-      ) : null}
       <label className="flex items-center gap-2 text-sm font-medium">
         <input name="isPublished" type="checkbox" defaultChecked={product?.isPublished ?? true} />
         منتشر شود
