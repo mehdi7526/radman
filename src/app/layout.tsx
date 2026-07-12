@@ -28,7 +28,12 @@ export const metadata: Metadata = {
     description: siteConfig.description,
     locale: "fa_IR",
     type: "website",
-    siteName: siteConfig.name
+    siteName: siteConfig.name,
+    images: [{ url: "/brand/radman-logo.png", width: 512, height: 512, alt: siteConfig.name }]
+  },
+  icons: {
+    icon: "/brand/radman-logo.png",
+    apple: "/brand/radman-logo.png"
   }
 };
 
@@ -36,9 +41,12 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="fa" dir="rtl" className={iranYekan.variable}>
       <body className="font-sans antialiased">
+        <a href="#main-content" className="skip-link">
+          رفتن به محتوای اصلی
+        </a>
         <CartProvider>
           <Header />
-          <main>{children}</main>
+          <main id="main-content">{children}</main>
           <Footer />
         </CartProvider>
       </body>

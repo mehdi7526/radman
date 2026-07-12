@@ -2,25 +2,76 @@
 @tailwind components;
 @tailwind utilities;
 
+/*
+ * Radman Design System — Filtration Precision
+ * Palette: cold glacier surfaces, deep ink type, atlas blue brand, single signal accent
+ * Geometry: 2px radius, hairline rules, no decorative gradients
+ */
+
 :root {
-  --background: 204 60% 98%;
-  --foreground: 216 46% 12%;
-  --card: 0 0% 100%;
-  --card-foreground: 216 46% 12%;
-  --primary: 199 89% 42%;
+  /* Color tokens — aligned with Radman logo palette */
+  --deep-ink: 216 40% 11%;
+  --glacier: 210 22% 97%;
+  --porcelain: 0 0% 100%;
+  --atlas: 216 45% 20%;
+  --oxygen: 195 20% 42%;
+  --mesh: 210 12% 40%;
+  --rule: 210 16% 86%;
+  --signal: 38 42% 52%;
+
+  /* Semantic mapping */
+  --background: var(--glacier);
+  --foreground: var(--deep-ink);
+  --card: var(--porcelain);
+  --card-foreground: var(--deep-ink);
+  --primary: var(--atlas);
   --primary-foreground: 0 0% 100%;
-  --secondary: 175 49% 88%;
-  --secondary-foreground: 197 78% 18%;
-  --muted: 204 42% 93%;
-  --muted-foreground: 215 22% 39%;
-  --accent: 43 94% 62%;
-  --accent-foreground: 215 48% 15%;
+  --secondary: 210 25% 94%;
+  --secondary-foreground: var(--deep-ink);
+  --muted: 210 20% 93%;
+  --muted-foreground: var(--mesh);
+  --accent: var(--signal);
+  --accent-foreground: var(--deep-ink);
   --destructive: 0 72% 51%;
   --destructive-foreground: 0 0% 100%;
-  --border: 202 34% 86%;
-  --input: 202 34% 86%;
-  --ring: 199 89% 42%;
-  --radius: 0.5rem;
+  --border: var(--rule);
+  --input: var(--rule);
+  --ring: var(--oxygen);
+
+  /* Spacing scale (4px base) */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-24: 6rem;
+
+  /* Geometry */
+  --radius: 2px;
+
+  /* Z-index scale */
+  --z-base: 0;
+  --z-dropdown: 10;
+  --z-sticky: 20;
+  --z-overlay: 30;
+  --z-modal: 40;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 * {
@@ -32,11 +83,8 @@ html {
 }
 
 body {
-  min-height: 100vh;
-  background:
-    radial-gradient(circle at 12% 12%, rgba(20, 184, 166, 0.16), transparent 26rem),
-    radial-gradient(circle at 85% 4%, rgba(56, 189, 248, 0.18), transparent 24rem),
-    linear-gradient(180deg, #f8fdff 0%, #eef8fb 44%, #ffffff 100%);
+  min-height: 100dvh;
+  background-color: hsl(var(--background));
   color: hsl(var(--foreground));
 }
 
@@ -44,36 +92,44 @@ a {
   text-decoration: none;
 }
 
-.waterfall {
-  position: relative;
-  overflow: hidden;
-  background:
-    linear-gradient(145deg, rgba(6, 78, 113, 0.97), rgba(14, 116, 144, 0.94) 45%, rgba(15, 118, 110, 0.92)),
-    radial-gradient(circle at 20% 18%, rgba(255, 255, 255, 0.18), transparent 26rem);
-}
+@layer components {
+  .skip-link {
+    @apply sr-only focus:not-sr-only focus:fixed focus:start-4 focus:top-4 focus:z-50 focus:rounded-sm focus:bg-primary focus:px-4 focus:py-2 focus:text-primary-foreground focus:outline-none focus:ring-2 focus:ring-ring;
+  }
 
-.hero-grid {
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
-  background-size: 44px 44px;
-  mask-image: linear-gradient(180deg, black 0%, transparent 85%);
-}
+  .eyebrow {
+    @apply text-xs font-bold text-signal;
+  }
 
-.hero-stream {
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0), rgba(186, 230, 253, 0.52), rgba(20, 184, 166, 0));
-}
+  .eyebrow-muted {
+    @apply text-xs font-bold text-oxygen;
+  }
 
-.spec-panel {
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(240, 253, 250, 0.78)),
-    linear-gradient(135deg, rgba(14, 165, 233, 0.12), rgba(45, 212, 191, 0.1));
-}
+  .section-rule {
+    @apply h-px w-full bg-border;
+  }
 
-.soft-border {
-  border-color: rgba(14, 116, 144, 0.16);
-}
+  .filter-stage {
+    @apply flex items-center gap-3 border border-border bg-porcelain px-4 py-3;
+  }
 
-.waterline {
-  background: linear-gradient(90deg, transparent, rgba(14, 165, 233, 0.7), rgba(45, 212, 191, 0.7), transparent);
+  .spec-label {
+    @apply text-xs text-muted-foreground;
+  }
+
+  .spec-value {
+    @apply text-sm font-bold tabular-nums text-foreground;
+  }
+
+  .surface-card {
+    @apply border bg-card text-card-foreground;
+  }
+
+  .hero-panel {
+    @apply border border-signal/20 bg-white/5;
+  }
+
+  .brand-frame {
+    @apply border border-signal/30 bg-background/5 p-1;
+  }
 }

@@ -6,10 +6,41 @@ const config: Config = {
   theme: {
     container: {
       center: true,
-      padding: "1rem",
+      padding: {
+        DEFAULT: "1rem",
+        md: "1.5rem",
+        xl: "2rem"
+      },
       screens: {
-        "2xl": "1180px"
+        sm: "100%",
+        md: "768px",
+        lg: "1024px",
+        xl: "1440px"
       }
+    },
+    screens: {
+      xs: "375px",
+      sm: "640px",
+      md: "768px",
+      lg: "1024px",
+      xl: "1440px"
+    },
+    spacing: {
+      px: "1px",
+      0: "0",
+      0.5: "0.125rem",
+      1: "var(--space-1)",
+      2: "var(--space-2)",
+      3: "var(--space-3)",
+      4: "var(--space-4)",
+      5: "1.25rem",
+      6: "var(--space-6)",
+      8: "var(--space-8)",
+      10: "2.5rem",
+      12: "var(--space-12)",
+      16: "var(--space-16)",
+      20: "5rem",
+      24: "var(--space-24)"
     },
     extend: {
       fontFamily: {
@@ -21,6 +52,11 @@ const config: Config = {
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
+        porcelain: "hsl(var(--porcelain))",
+        atlas: "hsl(var(--atlas))",
+        oxygen: "hsl(var(--oxygen))",
+        mesh: "hsl(var(--mesh))",
+        signal: "hsl(var(--signal))",
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))"
@@ -48,20 +84,18 @@ const config: Config = {
       },
       borderRadius: {
         lg: "var(--radius)",
-        md: "calc(var(--radius) - 2px)",
-        sm: "calc(var(--radius) - 4px)"
+        md: "var(--radius)",
+        sm: "var(--radius)"
       },
       boxShadow: {
-        water: "0 24px 80px rgba(14, 116, 144, 0.16)"
+        subtle: "0 1px 2px rgba(14, 26, 36, 0.06)",
+        lift: "0 4px 16px rgba(14, 26, 36, 0.08)"
       },
-      keyframes: {
-        flow: {
-          "0%": { transform: "translate3d(0, -8%, 0)" },
-          "100%": { transform: "translate3d(0, 8%, 0)" }
-        }
-      },
-      animation: {
-        flow: "flow 8s ease-in-out infinite alternate"
+      zIndex: {
+        dropdown: "10",
+        sticky: "20",
+        overlay: "30",
+        modal: "40"
       }
     }
   },
