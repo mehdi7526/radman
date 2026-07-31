@@ -50,12 +50,12 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
         </p>
       </header>
 
-      <form className="mb-8 grid gap-3 border border-border bg-porcelain p-4 md:grid-cols-2 lg:grid-cols-[1fr_180px_140px_140px_140px_auto]">
+      <form className="mb-12 grid gap-4 rounded-2xl border border-border bg-white p-5 shadow-subtle md:grid-cols-2 md:p-6 lg:grid-cols-[1fr_180px_140px_140px_140px_auto]">
         <div>
           <label htmlFor="product-search" className="sr-only">
             جستجو
           </label>
-          <Input id="product-search" name="q" defaultValue={q} placeholder="جستجو..." />
+          <Input id="product-search" name="q" defaultValue={q} placeholder="جستجو در محصولات..." className="h-12 rounded-xl" />
         </div>
         <div>
           <label htmlFor="product-category" className="sr-only">
@@ -65,7 +65,7 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
             id="product-category"
             name="category"
             defaultValue={categorySlug ?? ""}
-            className="h-11 w-full rounded-sm border border-input px-3 text-sm"
+            className="filter-select"
           >
             <option value="">همه دسته‌ها</option>
             {categories.map((category) => (
@@ -79,13 +79,13 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
           <label htmlFor="min-price" className="sr-only">
             حداقل قیمت
           </label>
-          <Input id="min-price" name="minPrice" type="number" defaultValue={params.minPrice} placeholder="حداقل قیمت" />
+          <Input id="min-price" name="minPrice" type="number" defaultValue={params.minPrice} placeholder="حداقل قیمت" className="h-12 rounded-xl" />
         </div>
         <div>
           <label htmlFor="max-price" className="sr-only">
             حداکثر قیمت
           </label>
-          <Input id="max-price" name="maxPrice" type="number" defaultValue={params.maxPrice} placeholder="حداکثر قیمت" />
+          <Input id="max-price" name="maxPrice" type="number" defaultValue={params.maxPrice} placeholder="حداکثر قیمت" className="h-12 rounded-xl" />
         </div>
         <div>
           <label htmlFor="product-sort" className="sr-only">
@@ -95,7 +95,7 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
             id="product-sort"
             name="sort"
             defaultValue={params.sort ?? "newest"}
-            className="h-11 w-full rounded-sm border border-input px-3 text-sm"
+            className="filter-select"
           >
             <option value="newest">جدیدترین</option>
             <option value="price-asc">ارزان‌ترین</option>
@@ -103,7 +103,7 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
             <option value="name">نام</option>
           </select>
         </div>
-        <Button type="submit">اعمال</Button>
+        <Button type="submit" className="h-12 rounded-xl">اعمال فیلتر</Button>
       </form>
 
       {products.length === 0 ? (

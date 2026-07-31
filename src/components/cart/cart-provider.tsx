@@ -18,6 +18,7 @@ type CartContextValue = {
   updateQuantity: (productId: string, quantity: number) => void;
   removeItem: (productId: string) => void;
   clear: () => void;
+  isReady: boolean;
 };
 
 const CartContext = createContext<CartContextValue | null>(null);
@@ -56,9 +57,10 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   const updateQuantity = useCallback((productId: string, quantity: number) => {
+    const safeQuantity = Number.isFinite(quantity) ? Math.max(1, Math.floor(quantity)) : 1;
     setItems((current) =>
       current
-        .map((item) => (item.productId === productId ? { ...item, quantity: Math.max(1, quantity) } : item))
+        .map((item) => (item.productId === productId ? { ...item, quantity: safeQuantity } : item))
         .filter((item) => item.quantity > 0)
     );
   }, []);
@@ -77,8 +79,8 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   );
 
   const value = useMemo<CartContextValue>(
-    () => ({ items, total, addItem, updateQuantity, removeItem, clear }),
-    [items, total, addItem, updateQuantity, removeItem, clear]
+    () => ({ items, total, addItem, updateQuantity, removeItem, clear, isReady }),
+    [items, total, addItem, updateQuantity, removeItem, clear, isReady]
   );
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;

@@ -1,0 +1,619 @@
+ ⨯ Error: Cannot find module '.prisma/client/default'
+Require stack:
+- C:\Users\Mehdi\Projects\radman\node_modules\@prisma\client\default.js
+- C:\Users\Mehdi\Projects\radman\.next\server\app\page.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\server\require.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\server\load-components.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\build\utils.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\build\swc\options.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\build\swc\index.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\server\config.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\server\next.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\server\lib\start-server.js
+    at @prisma/client (C:\Users\Mehdi\Projects\radman\.next\server\app\page.js:476:18)
+    at eval (webpack-internal:///(rsc)/./src/lib/db.ts:5:72)
+    at <unknown> (rsc)/./src/lib/db.ts (C:\Users\Mehdi\Projects\radman\.next\server\app\page.js:282:1)
+    at eval (webpack-internal:///(rsc)/./src/lib/auth/session.ts:18:65)
+    at <unknown> (rsc)/./src/lib/auth/session.ts (C:\Users\Mehdi\Projects\radman\.next\server\app\page.js:260:1)
+    at eval (webpack-internal:///(rsc)/./src/components/site/header.tsx:16:75)
+    at <unknown> (rsc)/./src/components/site/header.tsx (C:\Users\Mehdi\Projects\radman\.next\server\app\page.js:194:1)
+    at eval (webpack-internal:///(rsc)/./src/app/layout.tsx:12:81)
+    at <unknown> (rsc)/./src/app/layout.tsx (C:\Users\Mehdi\Projects\radman\.next\server\app\page.js:84:1) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ ⨯ Error: Cannot find module '.prisma/client/default'
+Require stack:
+- C:\Users\Mehdi\Projects\radman\node_modules\@prisma\client\default.js
+- C:\Users\Mehdi\Projects\radman\.next\server\app\page.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\server\require.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\server\load-components.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\build\utils.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\build\swc\options.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\build\swc\index.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\server\config.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\server\next.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\server\lib\start-server.js
+    at @prisma/client (C:\Users\Mehdi\Projects\radman\.next\server\app\page.js:476:18)
+    at eval (webpack-internal:///(rsc)/./src/lib/db.ts:5:72)
+    at <unknown> (rsc)/./src/lib/db.ts (C:\Users\Mehdi\Projects\radman\.next\server\app\page.js:282:1)
+    at eval (webpack-internal:///(rsc)/./src/lib/auth/session.ts:18:65)
+    at <unknown> (rsc)/./src/lib/auth/session.ts (C:\Users\Mehdi\Projects\radman\.next\server\app\page.js:260:1)
+    at eval (webpack-internal:///(rsc)/./src/components/site/header.tsx:16:75)
+    at <unknown> (rsc)/./src/components/site/header.tsx (C:\Users\Mehdi\Projects\radman\.next\server\app\page.js:194:1)
+    at eval (webpack-internal:///(rsc)/./src/app/layout.tsx:12:81)
+    at <unknown> (rsc)/./src/app/layout.tsx (C:\Users\Mehdi\Projects\radman\.next\server\app\page.js:84:1) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array],
+  page: '/'
+}
+ ⨯ Error: Cannot find module '.prisma/client/default'
+Require stack:
+- C:\Users\Mehdi\Projects\radman\node_modules\@prisma\client\default.js
+- C:\Users\Mehdi\Projects\radman\.next\server\app\page.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\server\require.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\server\load-components.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\build\utils.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\build\swc\options.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\build\swc\index.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\server\config.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\server\next.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\server\lib\start-server.js
+    at @prisma/client (C:\Users\Mehdi\Projects\radman\.next\server\app\page.js:476:18)
+    at eval (webpack-internal:///(rsc)/./src/lib/db.ts:5:72)
+    at <unknown> (rsc)/./src/lib/db.ts (C:\Users\Mehdi\Projects\radman\.next\server\app\page.js:282:1)
+    at eval (webpack-internal:///(rsc)/./src/lib/auth/session.ts:18:65)
+    at <unknown> (rsc)/./src/lib/auth/session.ts (C:\Users\Mehdi\Projects\radman\.next\server\app\page.js:260:1)
+    at eval (webpack-internal:///(rsc)/./src/components/site/header.tsx:16:75)
+    at <unknown> (rsc)/./src/components/site/header.tsx (C:\Users\Mehdi\Projects\radman\.next\server\app\page.js:194:1)
+    at eval (webpack-internal:///(rsc)/./src/app/layout.tsx:12:81)
+    at <unknown> (rsc)/./src/app/layout.tsx (C:\Users\Mehdi\Projects\radman\.next\server\app\page.js:84:1) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ ⨯ Error: Cannot find module '.prisma/client/default'
+Require stack:
+- C:\Users\Mehdi\Projects\radman\node_modules\@prisma\client\default.js
+- C:\Users\Mehdi\Projects\radman\.next\server\app\page.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\server\require.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\server\load-components.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\build\utils.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\build\swc\options.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\build\swc\index.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\server\config.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\server\next.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\server\lib\start-server.js
+    at @prisma/client (C:\Users\Mehdi\Projects\radman\.next\server\app\page.js:476:18)
+    at eval (webpack-internal:///(rsc)/./src/lib/db.ts:5:72)
+    at <unknown> (rsc)/./src/lib/db.ts (C:\Users\Mehdi\Projects\radman\.next\server\app\page.js:282:1)
+    at eval (webpack-internal:///(rsc)/./src/lib/auth/session.ts:18:65)
+    at <unknown> (rsc)/./src/lib/auth/session.ts (C:\Users\Mehdi\Projects\radman\.next\server\app\page.js:260:1)
+    at eval (webpack-internal:///(rsc)/./src/components/site/header.tsx:16:75)
+    at <unknown> (rsc)/./src/components/site/header.tsx (C:\Users\Mehdi\Projects\radman\.next\server\app\page.js:194:1)
+    at eval (webpack-internal:///(rsc)/./src/app/layout.tsx:12:81)
+    at <unknown> (rsc)/./src/app/layout.tsx (C:\Users\Mehdi\Projects\radman\.next\server\app\page.js:84:1) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array],
+  page: '/'
+}
+ ⨯ Error: Cannot find module '.prisma/client/default'
+Require stack:
+- C:\Users\Mehdi\Projects\radman\node_modules\@prisma\client\default.js
+- C:\Users\Mehdi\Projects\radman\.next\server\app\page.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\server\require.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\server\load-components.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\build\utils.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\build\swc\options.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\build\swc\index.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\server\config.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\server\next.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\server\lib\start-server.js
+    at @prisma/client (C:\Users\Mehdi\Projects\radman\.next\server\app\page.js:476:18)
+    at eval (webpack-internal:///(rsc)/./src/lib/db.ts:5:72)
+    at <unknown> (rsc)/./src/lib/db.ts (C:\Users\Mehdi\Projects\radman\.next\server\app\page.js:282:1)
+    at eval (webpack-internal:///(rsc)/./src/lib/auth/session.ts:18:65)
+    at <unknown> (rsc)/./src/lib/auth/session.ts (C:\Users\Mehdi\Projects\radman\.next\server\app\page.js:260:1)
+    at eval (webpack-internal:///(rsc)/./src/components/site/header.tsx:16:75)
+    at <unknown> (rsc)/./src/components/site/header.tsx (C:\Users\Mehdi\Projects\radman\.next\server\app\page.js:194:1)
+    at eval (webpack-internal:///(rsc)/./src/app/layout.tsx:12:81)
+    at <unknown> (rsc)/./src/app/layout.tsx (C:\Users\Mehdi\Projects\radman\.next\server\app\page.js:84:1) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ ⨯ Error: Cannot find module '.prisma/client/default'
+Require stack:
+- C:\Users\Mehdi\Projects\radman\node_modules\@prisma\client\default.js
+- C:\Users\Mehdi\Projects\radman\.next\server\app\page.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\server\require.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\server\load-components.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\build\utils.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\build\swc\options.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\build\swc\index.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\server\config.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\server\next.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\server\lib\start-server.js
+    at @prisma/client (C:\Users\Mehdi\Projects\radman\.next\server\app\page.js:476:18)
+    at eval (webpack-internal:///(rsc)/./src/lib/db.ts:5:72)
+    at <unknown> (rsc)/./src/lib/db.ts (C:\Users\Mehdi\Projects\radman\.next\server\app\page.js:282:1)
+    at eval (webpack-internal:///(rsc)/./src/lib/auth/session.ts:18:65)
+    at <unknown> (rsc)/./src/lib/auth/session.ts (C:\Users\Mehdi\Projects\radman\.next\server\app\page.js:260:1)
+    at eval (webpack-internal:///(rsc)/./src/components/site/header.tsx:16:75)
+    at <unknown> (rsc)/./src/components/site/header.tsx (C:\Users\Mehdi\Projects\radman\.next\server\app\page.js:194:1)
+    at eval (webpack-internal:///(rsc)/./src/app/layout.tsx:12:81)
+    at <unknown> (rsc)/./src/app/layout.tsx (C:\Users\Mehdi\Projects\radman\.next\server\app\page.js:84:1) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array],
+  page: '/'
+}
+ ⨯ Error: Cannot find module '.prisma/client/default'
+Require stack:
+- C:\Users\Mehdi\Projects\radman\node_modules\@prisma\client\default.js
+- C:\Users\Mehdi\Projects\radman\.next\server\app\page.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\server\require.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\server\load-components.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\build\utils.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\build\swc\options.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\build\swc\index.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\server\config.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\server\next.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\server\lib\start-server.js
+    at @prisma/client (C:\Users\Mehdi\Projects\radman\.next\server\app\page.js:476:18)
+    at eval (webpack-internal:///(rsc)/./src/lib/db.ts:5:72)
+    at <unknown> (rsc)/./src/lib/db.ts (C:\Users\Mehdi\Projects\radman\.next\server\app\page.js:282:1)
+    at eval (webpack-internal:///(rsc)/./src/lib/auth/session.ts:18:65)
+    at <unknown> (rsc)/./src/lib/auth/session.ts (C:\Users\Mehdi\Projects\radman\.next\server\app\page.js:260:1)
+    at eval (webpack-internal:///(rsc)/./src/components/site/header.tsx:16:75)
+    at <unknown> (rsc)/./src/components/site/header.tsx (C:\Users\Mehdi\Projects\radman\.next\server\app\page.js:194:1)
+    at eval (webpack-internal:///(rsc)/./src/app/layout.tsx:12:81)
+    at <unknown> (rsc)/./src/app/layout.tsx (C:\Users\Mehdi\Projects\radman\.next\server\app\page.js:84:1) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ ⨯ Error: Cannot find module '.prisma/client/default'
+Require stack:
+- C:\Users\Mehdi\Projects\radman\node_modules\@prisma\client\default.js
+- C:\Users\Mehdi\Projects\radman\.next\server\app\page.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\server\require.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\server\load-components.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\build\utils.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\build\swc\options.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\build\swc\index.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\server\config.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\server\next.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\server\lib\start-server.js
+    at @prisma/client (C:\Users\Mehdi\Projects\radman\.next\server\app\page.js:476:18)
+    at eval (webpack-internal:///(rsc)/./src/lib/db.ts:5:72)
+    at <unknown> (rsc)/./src/lib/db.ts (C:\Users\Mehdi\Projects\radman\.next\server\app\page.js:282:1)
+    at eval (webpack-internal:///(rsc)/./src/lib/auth/session.ts:18:65)
+    at <unknown> (rsc)/./src/lib/auth/session.ts (C:\Users\Mehdi\Projects\radman\.next\server\app\page.js:260:1)
+    at eval (webpack-internal:///(rsc)/./src/components/site/header.tsx:16:75)
+    at <unknown> (rsc)/./src/components/site/header.tsx (C:\Users\Mehdi\Projects\radman\.next\server\app\page.js:194:1)
+    at eval (webpack-internal:///(rsc)/./src/app/layout.tsx:12:81)
+    at <unknown> (rsc)/./src/app/layout.tsx (C:\Users\Mehdi\Projects\radman\.next\server\app\page.js:84:1) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array],
+  page: '/'
+}
+ ⨯ Error: Cannot find module '.prisma/client/default'
+Require stack:
+- C:\Users\Mehdi\Projects\radman\node_modules\@prisma\client\default.js
+- C:\Users\Mehdi\Projects\radman\.next\server\app\page.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\server\require.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\server\load-components.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\build\utils.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\build\swc\options.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\build\swc\index.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\server\config.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\server\next.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\server\lib\start-server.js
+    at @prisma/client (C:\Users\Mehdi\Projects\radman\.next\server\app\page.js:476:18)
+    at eval (webpack-internal:///(rsc)/./src/lib/db.ts:5:72)
+    at <unknown> (rsc)/./src/lib/db.ts (C:\Users\Mehdi\Projects\radman\.next\server\app\page.js:282:1)
+    at eval (webpack-internal:///(rsc)/./src/lib/auth/session.ts:18:65)
+    at <unknown> (rsc)/./src/lib/auth/session.ts (C:\Users\Mehdi\Projects\radman\.next\server\app\page.js:260:1)
+    at eval (webpack-internal:///(rsc)/./src/components/site/header.tsx:16:75)
+    at <unknown> (rsc)/./src/components/site/header.tsx (C:\Users\Mehdi\Projects\radman\.next\server\app\page.js:194:1)
+    at eval (webpack-internal:///(rsc)/./src/app/layout.tsx:12:81)
+    at <unknown> (rsc)/./src/app/layout.tsx (C:\Users\Mehdi\Projects\radman\.next\server\app\page.js:84:1) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ ⨯ Error: Cannot find module '.prisma/client/default'
+Require stack:
+- C:\Users\Mehdi\Projects\radman\node_modules\@prisma\client\default.js
+- C:\Users\Mehdi\Projects\radman\.next\server\app\page.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\server\require.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\server\load-components.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\build\utils.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\build\swc\options.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\build\swc\index.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\server\config.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\server\next.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\server\lib\start-server.js
+    at @prisma/client (C:\Users\Mehdi\Projects\radman\.next\server\app\page.js:476:18)
+    at eval (webpack-internal:///(rsc)/./src/lib/db.ts:5:72)
+    at <unknown> (rsc)/./src/lib/db.ts (C:\Users\Mehdi\Projects\radman\.next\server\app\page.js:282:1)
+    at eval (webpack-internal:///(rsc)/./src/lib/auth/session.ts:18:65)
+    at <unknown> (rsc)/./src/lib/auth/session.ts (C:\Users\Mehdi\Projects\radman\.next\server\app\page.js:260:1)
+    at eval (webpack-internal:///(rsc)/./src/components/site/header.tsx:16:75)
+    at <unknown> (rsc)/./src/components/site/header.tsx (C:\Users\Mehdi\Projects\radman\.next\server\app\page.js:194:1)
+    at eval (webpack-internal:///(rsc)/./src/app/layout.tsx:12:81)
+    at <unknown> (rsc)/./src/app/layout.tsx (C:\Users\Mehdi\Projects\radman\.next\server\app\page.js:84:1) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array],
+  page: '/'
+}
+ ⨯ Error: Cannot find module '.prisma/client/default'
+Require stack:
+- C:\Users\Mehdi\Projects\radman\node_modules\@prisma\client\default.js
+- C:\Users\Mehdi\Projects\radman\.next\server\app\page.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\server\require.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\server\load-components.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\build\utils.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\build\swc\options.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\build\swc\index.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\server\config.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\server\next.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\server\lib\start-server.js
+    at @prisma/client (C:\Users\Mehdi\Projects\radman\.next\server\app\page.js:476:18)
+    at eval (webpack-internal:///(rsc)/./src/lib/db.ts:5:72)
+    at <unknown> (rsc)/./src/lib/db.ts (C:\Users\Mehdi\Projects\radman\.next\server\app\page.js:282:1)
+    at eval (webpack-internal:///(rsc)/./src/lib/auth/session.ts:18:65)
+    at <unknown> (rsc)/./src/lib/auth/session.ts (C:\Users\Mehdi\Projects\radman\.next\server\app\page.js:260:1)
+    at eval (webpack-internal:///(rsc)/./src/components/site/header.tsx:16:75)
+    at <unknown> (rsc)/./src/components/site/header.tsx (C:\Users\Mehdi\Projects\radman\.next\server\app\page.js:194:1)
+    at eval (webpack-internal:///(rsc)/./src/app/layout.tsx:12:81)
+    at <unknown> (rsc)/./src/app/layout.tsx (C:\Users\Mehdi\Projects\radman\.next\server\app\page.js:84:1) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ ⨯ Error: Cannot find module '.prisma/client/default'
+Require stack:
+- C:\Users\Mehdi\Projects\radman\node_modules\@prisma\client\default.js
+- C:\Users\Mehdi\Projects\radman\.next\server\app\page.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\server\require.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\server\load-components.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\build\utils.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\build\swc\options.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\build\swc\index.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\server\config.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\server\next.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\server\lib\start-server.js
+    at @prisma/client (C:\Users\Mehdi\Projects\radman\.next\server\app\page.js:476:18)
+    at eval (webpack-internal:///(rsc)/./src/lib/db.ts:5:72)
+    at <unknown> (rsc)/./src/lib/db.ts (C:\Users\Mehdi\Projects\radman\.next\server\app\page.js:282:1)
+    at eval (webpack-internal:///(rsc)/./src/lib/auth/session.ts:18:65)
+    at <unknown> (rsc)/./src/lib/auth/session.ts (C:\Users\Mehdi\Projects\radman\.next\server\app\page.js:260:1)
+    at eval (webpack-internal:///(rsc)/./src/components/site/header.tsx:16:75)
+    at <unknown> (rsc)/./src/components/site/header.tsx (C:\Users\Mehdi\Projects\radman\.next\server\app\page.js:194:1)
+    at eval (webpack-internal:///(rsc)/./src/app/layout.tsx:12:81)
+    at <unknown> (rsc)/./src/app/layout.tsx (C:\Users\Mehdi\Projects\radman\.next\server\app\page.js:84:1) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array],
+  page: '/'
+}
+ ⨯ Error: Cannot find module '.prisma/client/default'
+Require stack:
+- C:\Users\Mehdi\Projects\radman\node_modules\@prisma\client\default.js
+- C:\Users\Mehdi\Projects\radman\.next\server\app\page.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\server\require.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\server\load-components.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\build\utils.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\build\swc\options.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\build\swc\index.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\server\config.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\server\next.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\server\lib\start-server.js
+    at @prisma/client (C:\Users\Mehdi\Projects\radman\.next\server\app\page.js:476:18)
+    at eval (webpack-internal:///(rsc)/./src/lib/db.ts:5:72)
+    at <unknown> (rsc)/./src/lib/db.ts (C:\Users\Mehdi\Projects\radman\.next\server\app\page.js:282:1)
+    at eval (webpack-internal:///(rsc)/./src/lib/auth/session.ts:18:65)
+    at <unknown> (rsc)/./src/lib/auth/session.ts (C:\Users\Mehdi\Projects\radman\.next\server\app\page.js:260:1)
+    at eval (webpack-internal:///(rsc)/./src/components/site/header.tsx:16:75)
+    at <unknown> (rsc)/./src/components/site/header.tsx (C:\Users\Mehdi\Projects\radman\.next\server\app\page.js:194:1)
+    at eval (webpack-internal:///(rsc)/./src/app/layout.tsx:12:81)
+    at <unknown> (rsc)/./src/app/layout.tsx (C:\Users\Mehdi\Projects\radman\.next\server\app\page.js:84:1) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ ⨯ Error: Cannot find module '.prisma/client/default'
+Require stack:
+- C:\Users\Mehdi\Projects\radman\node_modules\@prisma\client\default.js
+- C:\Users\Mehdi\Projects\radman\.next\server\app\page.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\server\require.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\server\load-components.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\build\utils.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\build\swc\options.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\build\swc\index.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\server\config.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\server\next.js
+- C:\Users\Mehdi\Projects\radman\node_modules\next\dist\server\lib\start-server.js
+    at @prisma/client (C:\Users\Mehdi\Projects\radman\.next\server\app\page.js:476:18)
+    at eval (webpack-internal:///(rsc)/./src/lib/db.ts:5:72)
+    at <unknown> (rsc)/./src/lib/db.ts (C:\Users\Mehdi\Projects\radman\.next\server\app\page.js:282:1)
+    at eval (webpack-internal:///(rsc)/./src/lib/auth/session.ts:18:65)
+    at <unknown> (rsc)/./src/lib/auth/session.ts (C:\Users\Mehdi\Projects\radman\.next\server\app\page.js:260:1)
+    at eval (webpack-internal:///(rsc)/./src/components/site/header.tsx:16:75)
+    at <unknown> (rsc)/./src/components/site/header.tsx (C:\Users\Mehdi\Projects\radman\.next\server\app\page.js:194:1)
+    at eval (webpack-internal:///(rsc)/./src/app/layout.tsx:12:81)
+    at <unknown> (rsc)/./src/app/layout.tsx (C:\Users\Mehdi\Projects\radman\.next\server\app\page.js:84:1) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array],
+  page: '/'
+}
+ ⨯ Error [PrismaClientKnownRequestError]: 
+Invalid `prisma.product.findMany()` invocation:
+
+
+The column `main.Product.categoryId` does not exist in the current database.
+    at async HomePage (src\app\page.tsx:21:20)
+  19 |
+  20 | export default async function HomePage() {
+> 21 |   const products = await getCachedFeaturedProducts();
+     |                    ^
+  22 |
+  23 |   return (
+  24 |     <> {
+  code: 'P2022',
+  meta: [Object],
+  clientVersion: '6.19.3',
+  digest: '2067108036'
+}
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+Only plain objects can be passed to Client Components from Server Components. Classes or other objects with methods are not supported.
+  <... ref=... component={{$$typeof: ..., render: ...}} variant=... color=... size=... className=... sx=... aria-label=... children=...>
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ ⨯ Error: Functions cannot be passed directly to Client Components unless you explicitly expose it by marking it with "use server". Or maybe you meant to call this function rather than return it.
+  {$$typeof: ..., render: function Slot.Slot}
+                          ^^^^^^^^^^^^^^^^^^
+    at stringify (<anonymous>)
+    at stringify (<anonymous>)
+    at stringify (<anonymous>)
+    at stringify (<anonymous>) {
+  digest: '2977906463'
+}
+ ⨯ [Error: Slot failed to slot onto its children. Expected a single React element child or `Slottable`.] {
+  digest: '3889577384'
+}
+ ⨯ ./src/components/product/product-card.tsx
+Error: 
+
+Caused by:
+    0: Failed to read source code from C:\Users\Mehdi\Projects\radman\src\components\product\product-card.tsx
+    1: The system cannot find the file specified. (os error 2)
+
+Import trace for requested module:
+./src/components/product/product-card.tsx
+./src/app/page.tsx
+React does not recognize the `justifyContent` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `justifycontent` instead. If you accidentally passed it from a parent component, remove it from the DOM element.
+React does not recognize the `alignItems` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `alignitems` instead. If you accidentally passed it from a parent component, remove it from the DOM element.
+ ⨯ Error: Attempted to call the default export of "C:\\Users\\Mehdi\\Projects\\radman\\node_modules\\@mui\\material\\styles\\styled.mjs" from the server, but it's on the client. It's not possible to invoke a client function from the server, it can only be rendered as a Component or passed to props of a Client Component.
+    at eval (src\components\ui\input.tsx:4:24)
+    at <unknown> (rsc)/./src/components/ui/input.tsx (C:\Users\Mehdi\Projects\radman\.next\server\app\products\page.js:249:1)
+    at eval (webpack-internal:///(rsc)/./src/app/products/page.tsx:13:78)
+    at <unknown> (rsc)/./src/app/products/page.tsx (C:\Users\Mehdi\Projects\radman\.next\server\app\products\page.js:117:1)
+  2 | import { styled } from "@mui/material/styles";
+  3 |
+> 4 | const MuiInput = styled("input")(({ theme }) => ({
+    |                        ^
+  5 |   height: 44,
+  6 |   width: "100%",
+  7 |   borderRadius: theme.shape.borderRadius,
+ ⨯ Error: Attempted to call the default export of "C:\\Users\\Mehdi\\Projects\\radman\\node_modules\\@mui\\material\\styles\\styled.mjs" from the server, but it's on the client. It's not possible to invoke a client function from the server, it can only be rendered as a Component or passed to props of a Client Component.
+    at eval (src\components\ui\input.tsx:4:24)
+    at <unknown> (rsc)/./src/components/ui/input.tsx (C:\Users\Mehdi\Projects\radman\.next\server\app\products\page.js:249:1)
+    at eval (webpack-internal:///(rsc)/./src/app/products/page.tsx:13:78)
+    at <unknown> (rsc)/./src/app/products/page.tsx (C:\Users\Mehdi\Projects\radman\.next\server\app\products\page.js:117:1)
+  2 | import { styled } from "@mui/material/styles";
+  3 |
+> 4 | const MuiInput = styled("input")(({ theme }) => ({
+    |                        ^
+  5 |   height: 44,
+  6 |   width: "100%",
+  7 |   borderRadius: theme.shape.borderRadius, {
+  page: '/products'
+}
+ ⨯ Error: Attempted to call the default export of "C:\\Users\\Mehdi\\Projects\\radman\\node_modules\\@mui\\material\\styles\\styled.mjs" from the server, but it's on the client. It's not possible to invoke a client function from the server, it can only be rendered as a Component or passed to props of a Client Component.
+    at eval (src\components\ui\input.tsx:4:24)
+    at <unknown> (rsc)/./src/components/ui/input.tsx (C:\Users\Mehdi\Projects\radman\.next\server\app\products\page.js:249:1)
+    at eval (webpack-internal:///(rsc)/./src/app/products/page.tsx:13:78)
+    at <unknown> (rsc)/./src/app/products/page.tsx (C:\Users\Mehdi\Projects\radman\.next\server\app\products\page.js:117:1)
+  2 | import { styled } from "@mui/material/styles";
+  3 |
+> 4 | const MuiInput = styled("input")(({ theme }) => ({
+    |                        ^
+  5 |   height: 44,
+  6 |   width: "100%",
+  7 |   borderRadius: theme.shape.borderRadius,
+ ⨯ Error: Attempted to call the default export of "C:\\Users\\Mehdi\\Projects\\radman\\node_modules\\@mui\\material\\styles\\styled.mjs" from the server, but it's on the client. It's not possible to invoke a client function from the server, it can only be rendered as a Component or passed to props of a Client Component.
+    at eval (src\components\ui\input.tsx:4:24)
+    at <unknown> (rsc)/./src/components/ui/input.tsx (C:\Users\Mehdi\Projects\radman\.next\server\app\products\page.js:249:1)
+    at eval (webpack-internal:///(rsc)/./src/app/products/page.tsx:13:78)
+    at <unknown> (rsc)/./src/app/products/page.tsx (C:\Users\Mehdi\Projects\radman\.next\server\app\products\page.js:117:1)
+  2 | import { styled } from "@mui/material/styles";
+  3 |
+> 4 | const MuiInput = styled("input")(({ theme }) => ({
+    |                        ^
+  5 |   height: 44,
+  6 |   width: "100%",
+  7 |   borderRadius: theme.shape.borderRadius, {
+  page: '/products'
+}
+ ⨯ Error: Attempted to call the default export of "C:\\Users\\Mehdi\\Projects\\radman\\node_modules\\@mui\\material\\styles\\styled.mjs" from the server, but it's on the client. It's not possible to invoke a client function from the server, it can only be rendered as a Component or passed to props of a Client Component.
+    at eval (src\components\ui\input.tsx:4:24)
+    at <unknown> (rsc)/./src/components/ui/input.tsx (C:\Users\Mehdi\Projects\radman\.next\server\app\products\page.js:249:1)
+    at eval (webpack-internal:///(rsc)/./src/app/products/page.tsx:13:78)
+    at <unknown> (rsc)/./src/app/products/page.tsx (C:\Users\Mehdi\Projects\radman\.next\server\app\products\page.js:117:1)
+  2 | import { styled } from "@mui/material/styles";
+  3 |
+> 4 | const MuiInput = styled("input")(({ theme }) => ({
+    |                        ^
+  5 |   height: 44,
+  6 |   width: "100%",
+  7 |   borderRadius: theme.shape.borderRadius,
+ ⨯ Error: Attempted to call the default export of "C:\\Users\\Mehdi\\Projects\\radman\\node_modules\\@mui\\material\\styles\\styled.mjs" from the server, but it's on the client. It's not possible to invoke a client function from the server, it can only be rendered as a Component or passed to props of a Client Component.
+    at eval (src\components\ui\input.tsx:4:24)
+    at <unknown> (rsc)/./src/components/ui/input.tsx (C:\Users\Mehdi\Projects\radman\.next\server\app\products\page.js:249:1)
+    at eval (webpack-internal:///(rsc)/./src/app/products/page.tsx:13:78)
+    at <unknown> (rsc)/./src/app/products/page.tsx (C:\Users\Mehdi\Projects\radman\.next\server\app\products\page.js:117:1)
+  2 | import { styled } from "@mui/material/styles";
+  3 |
+> 4 | const MuiInput = styled("input")(({ theme }) => ({
+    |                        ^
+  5 |   height: 44,
+  6 |   width: "100%",
+  7 |   borderRadius: theme.shape.borderRadius, {
+  page: '/products'
+}
+ ⨯ Error: Attempted to call the default export of "C:\\Users\\Mehdi\\Projects\\radman\\node_modules\\@mui\\material\\styles\\styled.mjs" from the server, but it's on the client. It's not possible to invoke a client function from the server, it can only be rendered as a Component or passed to props of a Client Component.
+    at eval (src\components\ui\input.tsx:4:24)
+    at <unknown> (rsc)/./src/components/ui/input.tsx (C:\Users\Mehdi\Projects\radman\.next\server\app\products\page.js:249:1)
+    at eval (webpack-internal:///(rsc)/./src/app/products/page.tsx:13:78)
+    at <unknown> (rsc)/./src/app/products/page.tsx (C:\Users\Mehdi\Projects\radman\.next\server\app\products\page.js:117:1)
+  2 | import { styled } from "@mui/material/styles";
+  3 |
+> 4 | const MuiInput = styled("input")(({ theme }) => ({
+    |                        ^
+  5 |   height: 44,
+  6 |   width: "100%",
+  7 |   borderRadius: theme.shape.borderRadius,
+ ⨯ Error: Attempted to call the default export of "C:\\Users\\Mehdi\\Projects\\radman\\node_modules\\@mui\\material\\styles\\styled.mjs" from the server, but it's on the client. It's not possible to invoke a client function from the server, it can only be rendered as a Component or passed to props of a Client Component.
+    at eval (src\components\ui\input.tsx:4:24)
+    at <unknown> (rsc)/./src/components/ui/input.tsx (C:\Users\Mehdi\Projects\radman\.next\server\app\products\page.js:249:1)
+    at eval (webpack-internal:///(rsc)/./src/app/products/page.tsx:13:78)
+    at <unknown> (rsc)/./src/app/products/page.tsx (C:\Users\Mehdi\Projects\radman\.next\server\app\products\page.js:117:1)
+  2 | import { styled } from "@mui/material/styles";
+  3 |
+> 4 | const MuiInput = styled("input")(({ theme }) => ({
+    |                        ^
+  5 |   height: 44,
+  6 |   width: "100%",
+  7 |   borderRadius: theme.shape.borderRadius, {
+  page: '/products'
+}
+ ⨯ Error: Attempted to call the default export of "C:\\Users\\Mehdi\\Projects\\radman\\node_modules\\@mui\\material\\styles\\styled.mjs" from the server, but it's on the client. It's not possible to invoke a client function from the server, it can only be rendered as a Component or passed to props of a Client Component.
+    at eval (src\components\ui\input.tsx:4:24)
+    at <unknown> (rsc)/./src/components/ui/input.tsx (C:\Users\Mehdi\Projects\radman\.next\server\app\products\page.js:249:1)
+    at eval (webpack-internal:///(rsc)/./src/app/products/page.tsx:13:78)
+    at <unknown> (rsc)/./src/app/products/page.tsx (C:\Users\Mehdi\Projects\radman\.next\server\app\products\page.js:117:1)
+  2 | import { styled } from "@mui/material/styles";
+  3 |
+> 4 | const MuiInput = styled("input")(({ theme }) => ({
+    |                        ^
+  5 |   height: 44,
+  6 |   width: "100%",
+  7 |   borderRadius: theme.shape.borderRadius,
+ ⨯ Error: Attempted to call the default export of "C:\\Users\\Mehdi\\Projects\\radman\\node_modules\\@mui\\material\\styles\\styled.mjs" from the server, but it's on the client. It's not possible to invoke a client function from the server, it can only be rendered as a Component or passed to props of a Client Component.
+    at eval (src\components\ui\input.tsx:4:24)
+    at <unknown> (rsc)/./src/components/ui/input.tsx (C:\Users\Mehdi\Projects\radman\.next\server\app\products\page.js:249:1)
+    at eval (webpack-internal:///(rsc)/./src/app/products/page.tsx:13:78)
+    at <unknown> (rsc)/./src/app/products/page.tsx (C:\Users\Mehdi\Projects\radman\.next\server\app\products\page.js:117:1)
+  2 | import { styled } from "@mui/material/styles";
+  3 |
+> 4 | const MuiInput = styled("input")(({ theme }) => ({
+    |                        ^
+  5 |   height: 44,
+  6 |   width: "100%",
+  7 |   borderRadius: theme.shape.borderRadius, {
+  page: '/products'
+}
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ ⨯ ./src/components/ui/input.tsx
+Error: 
+
+Caused by:
+    0: Failed to read source code from C:\Users\Mehdi\Projects\radman\src\components\ui\input.tsx
+    1: The system cannot find the file specified. (os error 2)
+
+Import trace for requested module:
+./src/components/ui/input.tsx
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ ⨯ Error: React.Children.only expected to receive a single React element child.
+    at Button (src\components\ui\button.tsx:18:44)
+  16 | const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+  17 |   ({ className, variant = "default", size = "default", asChild = false, sx, ...props }, ref) => {
+> 18 |     const child = asChild ? React.Children.only(props.children) as React.ReactElement<{ href?: string; children?: React.ReactNode }> : null;
+     |                                            ^
+  19 |     const muiVariant = variant === "outline" || variant === "secondary" ? "outlined" : variant === "ghost" ? "text" : "contained";
+  20 |     const color = variant === "destructive" ? "error" : variant === "secondary" ? "secondary" : "primary";
+  21 |     return ( {
+  digest: '3590306331'
+}
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ⨯ Error: Failed prop type: The prop `href` expects a `string` or `object` in `<Link>`, but got `undefined` instead.
+    at createPropError (..\..\..\src\client\app-dir\link.tsx:375:14)
+    at eval (..\..\..\src\client\app-dir\link.tsx:396:17)
+    at Array.forEach (<anonymous>)
+    at LinkComponent (..\..\..\src\client\app-dir\link.tsx:390:19)
+  373 |       actual: string
+  374 |     }) {
+> 375 |       return new Error(
+      |              ^
+  376 |         `Failed prop type: The prop \`${args.key}\` expects a ${args.expected} in \`<Link>\`, but got \`${args.actual}\` instead.` +
+  377 |           (typeof window !== 'undefined'
+  378 |             ? "\nOpen your browser's console to view the Component stack trace." {
+  digest: '4002934447'
+}
+ ⨯ Error: Failed prop type: The prop `href` expects a `string` or `object` in `<Link>`, but got `undefined` instead.
+    at createPropError (..\..\..\src\client\app-dir\link.tsx:375:14)
+    at eval (..\..\..\src\client\app-dir\link.tsx:396:17)
+    at Array.forEach (<anonymous>)
+    at LinkComponent (..\..\..\src\client\app-dir\link.tsx:390:19)
+  373 |       actual: string
+  374 |     }) {
+> 375 |       return new Error(
+      |              ^
+  376 |         `Failed prop type: The prop \`${args.key}\` expects a ${args.expected} in \`<Link>\`, but got \`${args.actual}\` instead.` +
+  377 |           (typeof window !== 'undefined'
+  378 |             ? "\nOpen your browser's console to view the Component stack trace." {
+  digest: '4002934447'
+}
+ ⨯ Error: Failed prop type: The prop `href` expects a `string` or `object` in `<Link>`, but got `undefined` instead.
+    at createPropError (..\..\..\src\client\app-dir\link.tsx:375:14)
+    at eval (..\..\..\src\client\app-dir\link.tsx:396:17)
+    at Array.forEach (<anonymous>)
+    at LinkComponent (..\..\..\src\client\app-dir\link.tsx:390:19)
+  373 |       actual: string
+  374 |     }) {
+> 375 |       return new Error(
+      |              ^
+  376 |         `Failed prop type: The prop \`${args.key}\` expects a ${args.expected} in \`<Link>\`, but got \`${args.actual}\` instead.` +
+  377 |           (typeof window !== 'undefined'
+  378 |             ? "\nOpen your browser's console to view the Component stack trace." {
+  digest: '4002934447'
+}
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ⨯ Error: Failed prop type: The prop `href` expects a `string` or `object` in `<Link>`, but got `undefined` instead.
+    at createPropError (..\..\..\src\client\app-dir\link.tsx:375:14)
+    at eval (..\..\..\src\client\app-dir\link.tsx:396:17)
+    at Array.forEach (<anonymous>)
+    at LinkComponent (..\..\..\src\client\app-dir\link.tsx:390:19)
+  373 |       actual: string
+  374 |     }) {
+> 375 |       return new Error(
+      |              ^
+  376 |         `Failed prop type: The prop \`${args.key}\` expects a ${args.expected} in \`<Link>\`, but got \`${args.actual}\` instead.` +
+  377 |           (typeof window !== 'undefined'
+  378 |             ? "\nOpen your browser's console to view the Component stack trace." {
+  digest: '4002934447'
+}
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload

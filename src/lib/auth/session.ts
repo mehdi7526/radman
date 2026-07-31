@@ -63,6 +63,8 @@ export async function createSession(userId: string, role: UserRole) {
     path: "/",
     maxAge: 60 * 60 * 24 * 7
   });
+
+  return token;
 }
 
 export async function destroySession() {

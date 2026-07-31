@@ -1,6 +1,5 @@
-import * as React from "react";
-import { cn } from "@/lib/utils";
+import { Card as MuiCard, type CardProps } from "@mui/material";
 
-export function Card({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
-  return <div className={cn("rounded-sm border bg-card text-card-foreground shadow-subtle", className)} {...props} />;
+export function Card({ className, variant = "outlined", ...props }: CardProps) {
+  return <MuiCard variant={variant} className={className} {...props} />;
 }

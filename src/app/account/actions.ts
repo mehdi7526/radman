@@ -2,7 +2,7 @@
 
 import { redirect } from "next/navigation";
 import { z } from "zod";
-import { hashPassword, needsRehash, verifyPassword } from "@/lib/auth/password";
+import { hashPassword } from "@/lib/auth/password";
 import { createSession, destroySession, requireCustomer } from "@/lib/auth/session";
 import { prisma } from "@/lib/db";
 
@@ -45,23 +45,19 @@ export async function registerCustomer(formData: FormData) {
 }
 
 export async function loginCustomer(formData: FormData) {
-  const email = String(formData.get("email"));
-  const password = String(formData.get("password"));
-  const user = await prisma.user.findUnique({ where: { email } });
+  const phone = String(formData.get("phone")).trim();
+  const otp = String(formData.get("otp")).trim();
+  const requestedNext = String(formData.get("next") ?? "");
+  const next = requestedNext.startsWith("/") && !requestedNext.startsWith("//") ? requestedNext : "/account";
+  const user = await prisma.user.findFirst({ where: { phone, role: "CUSTOMER" } });
+  const developmentOtp = process.env.DEV_OTP_CODE ?? "11111";
 
-  if (!user || user.role !== "CUSTOMER" || !verifyPassword(password, user.passwordHash)) {
-    redirect("/account/login?error=1");
-  }
-
-  if (needsRehash(user.passwordHash)) {
-    await prisma.user.update({
-      where: { id: user.id },
-      data: { passwordHash: hashPassword(password) }
-    });
+  if (!user || otp !== developmentOtp) {
+    redirect(`/account/login?error=1${next !== "/account" ? `&next=${encodeURIComponent(next)}` : ""}`);
   }
 
   await createSession(user.id, "CUSTOMER");
-  redirect("/account");
+  redirect(next);
 }
 
 export async function logoutCustomer() {

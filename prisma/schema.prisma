@@ -114,6 +114,7 @@ model Order {
   customerName     String
   customerPhone    String
   customerEmail    String?
+  postalCode       String
   address          String
   note             String?
   subtotal         Int

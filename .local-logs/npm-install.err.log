@@ -1,0 +1,36 @@
+npm warn cleanup Failed to remove some directories [
+npm warn cleanup   [
+npm warn cleanup     'C:\\Users\\Mehdi\\Projects\\radman\\node_modules\\eslint',
+npm warn cleanup     [Error: EPERM: operation not permitted, rmdir 'C:\Users\Mehdi\Projects\radman\node_modules\eslint\lib\rules\utils\unicode'] {
+npm warn cleanup       errno: -4048,
+npm warn cleanup       code: 'EPERM',
+npm warn cleanup       syscall: 'rmdir',
+npm warn cleanup       path: 'C:\\Users\\Mehdi\\Projects\\radman\\node_modules\\eslint\\lib\\rules\\utils\\unicode'
+npm warn cleanup     }
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     '\\\\?\\C:\\Users\\Mehdi\\Projects\\radman\\node_modules\\eslint',
+npm warn cleanup     [Error: EPERM: operation not permitted, rmdir 'C:\Users\Mehdi\Projects\radman\node_modules\eslint\lib\languages\js\source-code'] {
+npm warn cleanup       errno: -4048,
+npm warn cleanup       code: 'EPERM',
+npm warn cleanup       syscall: 'rmdir',
+npm warn cleanup       path: 'C:\\Users\\Mehdi\\Projects\\radman\\node_modules\\eslint\\lib\\languages\\js\\source-code'
+npm warn cleanup     }
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     '\\\\?\\C:\\Users\\Mehdi\\Projects\\radman\\node_modules\\next',
+npm warn cleanup     [Error: EPERM: operation not permitted, rmdir 'C:\Users\Mehdi\Projects\radman\node_modules\next\dist\build\webpack\config'] {
+npm warn cleanup       errno: -4048,
+npm warn cleanup       code: 'EPERM',
+npm warn cleanup       syscall: 'rmdir',
+npm warn cleanup       path: 'C:\\Users\\Mehdi\\Projects\\radman\\node_modules\\next\\dist\\build\\webpack\\config'
+npm warn cleanup     }
+npm warn cleanup   ]
+npm warn cleanup ]
+npm error code 1
+npm error path C:\Users\Mehdi\Projects\radman\node_modules\prisma
+npm error command failed
+npm error command C:\WINDOWS\system32\cmd.exe /d /s /c node scripts/preinstall-entry.js
+npm error 'node' is not recognized as an internal or external command,
+npm error operable program or batch file.
+npm error A complete log of this run can be found in: C:\Users\Mehdi\AppData\Local\npm-cache\_logs\2026-07-31T11_40_04_082Z-debug-0.log

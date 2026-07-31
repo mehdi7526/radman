@@ -141,6 +141,7 @@ async function testCheckoutFlow() {
       customerName: "تست خودکار",
       customerPhone: "09120000000",
       customerEmail: "test@radman.local",
+      postalCode: "1234567890",
       address: "تهران، خیابان تست، پلاک ۱",
       subtotal,
       discountAmount: discount,
@@ -184,7 +185,7 @@ async function testCheckoutFlow() {
   pass("Payment verified", verify.referenceId);
 
   await prisma.$transaction(async (tx) => {
-    for (const item of order.items) {
+    for (const item of [{ productId: product.id, quantity: 1 }]) {
       const updated = await tx.product.updateMany({
         where: { id: item.productId, inventory: { gte: item.quantity } },
         data: { inventory: { decrement: item.quantity } }

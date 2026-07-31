@@ -7,9 +7,9 @@ const config: Config = {
     container: {
       center: true,
       padding: {
-        DEFAULT: "1rem",
-        md: "1.5rem",
-        xl: "2rem"
+        DEFAULT: "1.25rem",
+        md: "2rem",
+        xl: "3rem"
       },
       screens: {
         sm: "100%",
@@ -88,8 +88,8 @@ const config: Config = {
         sm: "var(--radius)"
       },
       boxShadow: {
-        subtle: "0 1px 2px rgba(14, 26, 36, 0.06)",
-        lift: "0 4px 16px rgba(14, 26, 36, 0.08)"
+        subtle: "0 4px 16px rgba(31, 83, 94, 0.06)",
+        lift: "0 14px 32px rgba(31, 83, 94, 0.12)"
       },
       zIndex: {
         dropdown: "10",

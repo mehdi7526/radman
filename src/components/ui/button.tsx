@@ -1,46 +1,41 @@
 import * as React from "react";
-import { Slot } from "@radix-ui/react-slot";
-import { cva, type VariantProps } from "class-variance-authority";
-import { cn } from "@/lib/utils";
+import { Button as MuiButton, type ButtonProps as MuiButtonProps } from "@mui/material";
+import NextLink from "next/link";
 
-const buttonVariants = cva(
-  "inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-sm px-5 text-sm font-semibold transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
-  {
-    variants: {
-      variant: {
-        default: "bg-primary text-primary-foreground hover:bg-atlas/90",
-        secondary: "border border-border bg-secondary text-secondary-foreground hover:bg-muted",
-        outline: "border border-border bg-background hover:bg-muted",
-        ghost: "hover:bg-muted",
-        accent: "bg-signal text-accent-foreground hover:bg-signal/90",
-        destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90"
-      },
-      size: {
-        default: "min-h-11 px-5",
-        sm: "min-h-9 px-3 text-xs",
-        lg: "min-h-12 px-6 text-base",
-        icon: "size-11 min-h-11 min-w-11 px-0"
-      }
-    },
-    defaultVariants: {
-      variant: "default",
-      size: "default"
-    }
-  }
-);
+type ButtonVariant = "default" | "secondary" | "outline" | "ghost" | "accent" | "destructive";
+type ButtonSize = "default" | "sm" | "lg" | "icon";
 
-export interface ButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
-    VariantProps<typeof buttonVariants> {
+export interface ButtonProps extends Omit<MuiButtonProps, "variant" | "size" | "color"> {
+  variant?: ButtonVariant;
+  size?: ButtonSize;
   asChild?: boolean;
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, asChild = false, ...props }, ref) => {
-    const Comp = asChild ? Slot : "button";
-    return <Comp className={cn(buttonVariants({ variant, size, className }))} ref={ref} {...props} />;
+  ({ className, variant = "default", size = "default", asChild = false, sx, children, ...props }, ref) => {
+    const firstChild = asChild ? React.Children.toArray(children)[0] : null;
+    const child = firstChild && React.isValidElement(firstChild)
+      ? firstChild as React.ReactElement<{ href?: string; children?: React.ReactNode }>
+      : null;
+    const muiVariant = variant === "outline" || variant === "secondary" ? "outlined" : variant === "ghost" ? "text" : "contained";
+    const color = variant === "destructive" ? "error" : variant === "secondary" ? "secondary" : "primary";
+    return (
+      <MuiButton
+        ref={ref}
+        component={asChild ? NextLink : "button"}
+        href={child?.props.href}
+        variant={muiVariant}
+        color={color}
+        size={size === "sm" ? "small" : size === "lg" ? "large" : "medium"}
+        className={className}
+        sx={{ ...(variant === "accent" ? { backgroundColor: "#b8894d", color: "#112033", "&:hover": { backgroundColor: "#a87a40" } } : {}), ...(size === "icon" ? { minWidth: 44, width: 44, px: 0 } : {}), ...sx }}
+        {...props}
+      >
+        {child?.props.children ?? children}
+      </MuiButton>
+    );
   }
 );
 Button.displayName = "Button";
 
-export { Button, buttonVariants };
+export { Button };

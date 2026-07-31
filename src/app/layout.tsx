@@ -5,6 +5,7 @@ import { siteConfig } from "@/lib/seo";
 import { Header } from "@/components/site/header";
 import { Footer } from "@/components/site/footer";
 import { CartProvider } from "@/components/cart/cart-provider";
+import { MuiProvider } from "@/components/providers/mui-provider";
 
 const iranYekan = localFont({
   src: [
@@ -44,11 +45,15 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <a href="#main-content" className="skip-link">
           رفتن به محتوای اصلی
         </a>
-        <CartProvider>
-          <Header />
-          <main id="main-content">{children}</main>
-          <Footer />
-        </CartProvider>
+        <MuiProvider>
+          <CartProvider>
+            <div className="flex min-h-dvh flex-col">
+              <Header />
+              <main id="main-content" className="flex-1">{children}</main>
+              <Footer />
+            </div>
+          </CartProvider>
+        </MuiProvider>
       </body>
     </html>
   );

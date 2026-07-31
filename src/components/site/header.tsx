@@ -2,13 +2,14 @@ import Link from "next/link";
 
 import { Suspense } from "react";
 
-import { ShoppingBag, User } from "lucide-react";
+import { User } from "lucide-react";
 
 import { Logo } from "@/components/brand/logo";
 
 import { Button } from "@/components/ui/button";
 
 import { MobileNav, MobileNavFallback } from "@/components/site/mobile-nav";
+import { CartLink } from "@/components/cart/cart-link";
 
 import { getSession } from "@/lib/auth/session";
 
@@ -138,21 +139,8 @@ export function Header() {
 
           </Suspense>
 
-          <Button asChild variant="ghost" size="icon" aria-label="سبد خرید">
+          <CartLink />
 
-            <Link href="/cart">
-
-              <ShoppingBag className="size-5" aria-hidden="true" />
-
-            </Link>
-
-          </Button>
-
-          <Button asChild className="hidden sm:inline-flex" variant="accent">
-
-            <Link href="/products">شروع انتخاب</Link>
-
-          </Button>
 
         </div>
 
@@ -191,5 +179,3 @@ async function HeaderAuthLink() {
   );
 
 }
-
-

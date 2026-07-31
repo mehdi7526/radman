@@ -12,7 +12,7 @@ async function addColumnIfMissing(table: string, column: string, definition: str
 }
 
 async function main() {
-  await prisma.$executeRawUnsafe("PRAGMA journal_mode = WAL;");
+  await prisma.$queryRawUnsafe("PRAGMA journal_mode = WAL;");
   await prisma.$executeRawUnsafe("PRAGMA synchronous = NORMAL;");
   await prisma.$executeRawUnsafe("PRAGMA foreign_keys = ON;");
 
@@ -109,6 +109,7 @@ async function main() {
       "customerName" TEXT NOT NULL,
       "customerPhone" TEXT NOT NULL,
       "customerEmail" TEXT,
+      "postalCode" TEXT NOT NULL DEFAULT '',
       "address" TEXT NOT NULL,
       "note" TEXT,
       "subtotal" INTEGER NOT NULL DEFAULT 0,
@@ -129,6 +130,7 @@ async function main() {
   `);
 
   await addColumnIfMissing("Order", "userId", "TEXT");
+  await addColumnIfMissing("Order", "postalCode", "TEXT NOT NULL DEFAULT ''");
   await addColumnIfMissing("Order", "subtotal", "INTEGER NOT NULL DEFAULT 0");
   await addColumnIfMissing("Order", "discountAmount", "INTEGER NOT NULL DEFAULT 0");
   await addColumnIfMissing("Order", "shippingCost", "INTEGER NOT NULL DEFAULT 0");

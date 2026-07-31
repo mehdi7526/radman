@@ -67,12 +67,12 @@ export default async function ProductPage({ params }: ProductPageProps) {
       <div className="container grid gap-10 py-12 lg:grid-cols-[1fr_440px]">
         <div className="space-y-4">
           <ProductGallery images={product.images} />
-          <Card className="p-6">
+          <Card className="p-6 md:p-8">
             <h2 className="font-bold text-sky-950">توضیحات محصول</h2>
             <p className="mt-3 whitespace-pre-line leading-9 text-muted-foreground">{product.description}</p>
           </Card>
         </div>
-        <aside className="h-fit rounded-lg border bg-white p-6 shadow-water">
+        <aside className="h-fit rounded-2xl border bg-white p-6 shadow-lift md:p-8">
           {product.category ? (
             <p className="text-sm font-bold text-primary">{product.category.name}</p>
           ) : (

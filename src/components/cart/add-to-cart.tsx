@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Minus, Plus, ShoppingBag } from "lucide-react";
+import { Check, Minus, Plus, ShoppingBag } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/components/cart/cart-provider";
 
@@ -18,11 +18,12 @@ type AddToCartProps = {
 
 export function AddToCart({ product }: AddToCartProps) {
   const [quantity, setQuantity] = useState(1);
+  const [added, setAdded] = useState(false);
   const { addItem } = useCart();
 
   return (
     <div className="space-y-4">
-      <div className="flex w-36 items-center justify-between rounded-md border bg-white p-1">
+      <div className="flex w-36 items-center justify-between rounded-xl border border-border bg-white p-1 shadow-subtle">
         <Button
           type="button"
           variant="ghost"
@@ -48,20 +49,15 @@ export function AddToCart({ product }: AddToCartProps) {
         className="w-full sm:w-auto"
         disabled={product.inventory < 1}
         onClick={() =>
-          addItem(
-            {
-              productId: product.id,
-              slug: product.slug,
-              name: product.name,
-              price: product.price,
-              imageUrl: product.imageUrl
-            },
-            quantity
-          )
+          {
+            addItem({ productId: product.id, slug: product.slug, name: product.name, price: product.price, imageUrl: product.imageUrl }, quantity);
+            setAdded(true);
+            window.setTimeout(() => setAdded(false), 1800);
+          }
         }
       >
-        <ShoppingBag className="h-5 w-5" />
-        افزودن به سبد خرید
+        {added ? <Check className="h-5 w-5" /> : <ShoppingBag className="h-5 w-5" />}
+        {added ? "به سبد اضافه شد" : "افزودن به سبد خرید"}
       </Button>
     </div>
   );

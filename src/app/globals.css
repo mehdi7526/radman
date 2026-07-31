@@ -4,20 +4,20 @@
 
 /*
  * Radman Design System — Filtration Precision
- * Palette: cold glacier surfaces, deep ink type, atlas blue brand, single signal accent
- * Geometry: 2px radius, hairline rules, no decorative gradients
+ * Palette: soft glacier surfaces, calm atlas blue, warm brass accent
+ * Geometry: rounded surfaces, subtle borders and gentle depth
  */
 
 :root {
   /* Color tokens — aligned with Radman logo palette */
-  --deep-ink: 216 40% 11%;
-  --glacier: 210 22% 97%;
+  --deep-ink: 204 48% 19%;
+  --glacier: 180 20% 97%;
   --porcelain: 0 0% 100%;
-  --atlas: 216 45% 20%;
-  --oxygen: 195 20% 42%;
-  --mesh: 210 12% 40%;
-  --rule: 210 16% 86%;
-  --signal: 38 42% 52%;
+  --atlas: 201 51% 32%;
+  --oxygen: 190 27% 46%;
+  --mesh: 201 14% 46%;
+  --rule: 187 22% 88%;
+  --signal: 35 46% 57%;
 
   /* Semantic mapping */
   --background: var(--glacier);
@@ -26,9 +26,9 @@
   --card-foreground: var(--deep-ink);
   --primary: var(--atlas);
   --primary-foreground: 0 0% 100%;
-  --secondary: 210 25% 94%;
+  --secondary: 185 23% 93%;
   --secondary-foreground: var(--deep-ink);
-  --muted: 210 20% 93%;
+  --muted: 184 19% 93%;
   --muted-foreground: var(--mesh);
   --accent: var(--signal);
   --accent-foreground: var(--deep-ink);
@@ -50,7 +50,7 @@
   --space-24: 6rem;
 
   /* Geometry */
-  --radius: 2px;
+  --radius: 14px;
 
   /* Z-index scale */
   --z-base: 0;
@@ -86,6 +86,7 @@ body {
   min-height: 100dvh;
   background-color: hsl(var(--background));
   color: hsl(var(--foreground));
+  background-image: radial-gradient(circle at 8% 0%, rgba(165, 210, 210, 0.24), transparent 30rem);
 }
 
 a {
@@ -110,7 +111,12 @@ a {
   }
 
   .filter-stage {
-    @apply flex items-center gap-3 border border-border bg-porcelain px-4 py-3;
+    @apply flex items-center gap-3 rounded-xl border border-border bg-porcelain px-4 py-3 shadow-subtle;
+  }
+
+  .filter-select {
+    @apply h-12 w-full appearance-none rounded-xl border border-border bg-white bg-[length:12px] bg-[position:left_0.9rem_center] bg-no-repeat px-4 pl-10 text-sm font-medium text-foreground outline-none transition focus:border-oxygen focus:ring-2 focus:ring-oxygen/20;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12' fill='none'%3E%3Cpath d='m2 4 4 4 4-4' stroke='%235f7f8c' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
   }
 
   .spec-label {
@@ -122,14 +128,14 @@ a {
   }
 
   .surface-card {
-    @apply border bg-card text-card-foreground;
+    @apply rounded-xl border bg-card text-card-foreground shadow-subtle;
   }
 
   .hero-panel {
-    @apply border border-signal/20 bg-white/5;
+    @apply rounded-xl border border-signal/20 bg-white/10;
   }
 
   .brand-frame {
-    @apply border border-signal/30 bg-background/5 p-1;
+    @apply rounded-2xl border border-signal/30 bg-background/10 p-1;
   }
 }

@@ -30,7 +30,7 @@ type CheckoutFormProps = {
 };
 
 export function CheckoutForm({ shippingMethods, defaultValues }: CheckoutFormProps) {
-  const { items, total, removeItem } = useCart();
+  const { items, total, removeItem, isReady } = useCart();
   const [error, setError] = useState<string | null>(null);
   const [couponCode, setCouponCode] = useState("");
   const [discount, setDiscount] = useState(0);
@@ -41,6 +41,10 @@ export function CheckoutForm({ shippingMethods, defaultValues }: CheckoutFormPro
 
   const shippingCost = shippingMethods.find((method) => method.id === shippingMethodId)?.price ?? 0;
   const payable = Math.max(0, total - discount + shippingCost);
+
+  if (!isReady) {
+    return <div className="container py-16"><Card className="mx-auto max-w-xl p-8 text-center text-muted-foreground">در حال آماده‌سازی تسویه حساب…</Card></div>;
+  }
 
   if (items.length === 0) {
     return (
@@ -69,7 +73,8 @@ export function CheckoutForm({ shippingMethods, defaultValues }: CheckoutFormPro
   return (
     <div className="container grid gap-8 py-12 lg:grid-cols-[1fr_380px]">
       <form
-        className="space-y-5 rounded-lg border bg-white p-6 shadow-water"
+        id="checkout-form"
+        className="space-y-6 rounded-3xl border border-border bg-white p-6 shadow-lift md:p-8"
         onSubmit={(event) => {
           event.preventDefault();
           setError(null);
@@ -79,6 +84,7 @@ export function CheckoutForm({ shippingMethods, defaultValues }: CheckoutFormPro
               customerName: String(formData.get("customerName")),
               customerPhone: String(formData.get("customerPhone")),
               customerEmail: String(formData.get("customerEmail")),
+              postalCode: String(formData.get("postalCode")),
               address: String(formData.get("address")),
               note: String(formData.get("note")),
               couponCode: couponCode || undefined,
@@ -98,32 +104,18 @@ export function CheckoutForm({ shippingMethods, defaultValues }: CheckoutFormPro
         </div>
         {error ? <p className="rounded-md bg-red-50 p-3 text-sm text-destructive">{error}</p> : null}
         <div className="grid gap-4 md:grid-cols-2">
-          <label className="space-y-2 text-sm font-medium">
-            نام و نام خانوادگی
-            <Input name="customerName" defaultValue={defaultValues?.customerName} required />
-          </label>
-          <label className="space-y-2 text-sm font-medium">
-            شماره تماس
-            <Input name="customerPhone" defaultValue={defaultValues?.customerPhone} required inputMode="tel" />
-          </label>
+          <Input name="customerName" defaultValue={defaultValues?.customerName} required />
+          <Input name="customerPhone" defaultValue={defaultValues?.customerPhone} required inputMode="tel" />
         </div>
-        <label className="space-y-2 text-sm font-medium">
-          ایمیل
-          <Input name="customerEmail" type="email" defaultValue={defaultValues?.customerEmail} />
-        </label>
-        <label className="space-y-2 text-sm font-medium">
-          آدرس
-          <Textarea name="address" required />
-        </label>
-        <label className="space-y-2 text-sm font-medium">
-          توضیحات سفارش
-          <Textarea name="note" />
-        </label>
+        <Input name="customerEmail" type="email" defaultValue={defaultValues?.customerEmail} />
+        <Input name="postalCode" inputMode="numeric" pattern="[0-9]{10}" maxLength={10} required dir="ltr" />
+        <Textarea name="address" required />
+        <Textarea name="note" />
 
-        <div className="space-y-3 rounded-md border p-4">
+        <div className="space-y-4 rounded-2xl border border-border bg-slate-50/60 p-5">
           <p className="text-sm font-bold">روش ارسال</p>
           {shippingMethods.map((method) => (
-            <label key={method.id} className="flex cursor-pointer items-start gap-3 rounded-md border p-3">
+            <label key={method.id} className={`flex cursor-pointer items-start gap-4 rounded-xl border p-5 transition ${shippingMethodId === method.id ? "border-primary bg-cyan-50/60 shadow-subtle" : "border-border bg-white hover:border-oxygen/50"}`}>
               <input
                 type="radio"
                 name="shippingMethod"
@@ -143,7 +135,7 @@ export function CheckoutForm({ shippingMethods, defaultValues }: CheckoutFormPro
           ))}
         </div>
 
-        <div className="space-y-3 rounded-md border p-4">
+        <div className="space-y-4 rounded-2xl border border-border bg-slate-50/60 p-5">
           <p className="text-sm font-bold">کد تخفیف</p>
           <div className="flex gap-2">
             <Input
@@ -169,31 +161,29 @@ export function CheckoutForm({ shippingMethods, defaultValues }: CheckoutFormPro
                 });
               }}
             >
-              {isCheckingCoupon ? <Loader2 className="h-4 w-4 animate-spin" /> : "اعمال"}
+              {isCheckingCoupon ? <><Loader2 className="h-4 w-4 animate-spin" /> در حال بررسی</> : "اعمال"}
             </Button>
           </div>
           {couponMessage ? <p className="text-sm text-muted-foreground">{couponMessage}</p> : null}
         </div>
 
-        <Button disabled={isPending} size="lg" className="w-full">
-          {isPending ? <Loader2 className="h-5 w-5 animate-spin" /> : null}
-          پرداخت آزمایشی — {formatPrice(payable)}
-        </Button>
       </form>
-      <aside className="h-fit space-y-4 rounded-lg border bg-white p-6 shadow-water">
+      <aside className="h-fit space-y-4 rounded-3xl border border-border bg-white p-6 shadow-lift lg:sticky lg:top-24">
         <h2 className="font-bold text-sky-950">خلاصه سفارش</h2>
-        {items.map((item) => (
-          <div key={item.productId} className="flex gap-3 border-b pb-4 last:border-0">
-            <div className="relative h-16 w-16 overflow-hidden rounded-md bg-muted">
-              {item.imageUrl ? <ProductImage src={item.imageUrl} alt={item.name} fill className="object-cover" /> : null}
+        <div className="divide-y divide-border">
+          {items.map((item) => (
+            <div key={item.productId} className="flex gap-3 py-4 first:pt-0 last:pb-0">
+              <div className="relative h-16 w-16 overflow-hidden rounded-md bg-muted">
+                {item.imageUrl ? <ProductImage src={item.imageUrl} alt={item.name} fill className="object-cover" /> : null}
+              </div>
+              <div className="flex-1 text-sm">
+                <p className="font-bold">{item.name}</p>
+                <p className="mt-1 text-muted-foreground">تعداد: {item.quantity}</p>
+              </div>
+              <span className="text-sm font-bold">{formatPrice(item.price * item.quantity)}</span>
             </div>
-            <div className="flex-1 text-sm">
-              <p className="font-bold">{item.name}</p>
-              <p className="mt-1 text-muted-foreground">تعداد: {item.quantity}</p>
-            </div>
-            <span className="text-sm font-bold">{formatPrice(item.price * item.quantity)}</span>
-          </div>
-        ))}
+          ))}
+        </div>
         <div className="space-y-2 border-t pt-4 text-sm">
           <div className="flex items-center justify-between">
             <span>جمع کالاها</span>
@@ -214,6 +204,10 @@ export function CheckoutForm({ shippingMethods, defaultValues }: CheckoutFormPro
           <span>مبلغ قابل پرداخت</span>
           <span className="text-primary">{formatPrice(payable)}</span>
         </div>
+        <Button form="checkout-form" type="submit" disabled={isPending} size="lg" className="w-full">
+          {isPending ? <Loader2 className="h-5 w-5 animate-spin" /> : null}
+          {isPending ? "در حال انتقال به پرداخت…" : `پرداخت آزمایشی — ${formatPrice(payable)}`}
+        </Button>
       </aside>
     </div>
   );

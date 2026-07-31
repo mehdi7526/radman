@@ -1,0 +1,397 @@
+
+> radman-shop@0.1.0 dev
+> next dev
+
+   ▲ Next.js 15.5.20
+   - Local:        http://localhost:3000
+   - Network:      http://172.18.0.1:3000
+   - Environments: .env
+   - Experiments (use with caution):
+     · optimizePackageImports
+
+ ✓ Starting...
+ ✓ Ready in 5.8s
+ ○ Compiling / ...
+ ✓ Compiled / in 13.8s (753 modules)
+ ✓ Compiled in 1782ms (473 modules)
+ ✓ Compiled in 1034ms (271 modules)
+ ○ Compiling /_error ...
+ ✓ Compiled /_error in 3.3s (1077 modules)
+ GET / 500 in 1623ms
+ GET / 500 in 1946ms
+ GET / 500 in 2855ms
+ GET / 500 in 1187ms
+ GET / 500 in 1376ms
+ GET / 500 in 1878ms
+prisma:error 
+Invalid `prisma.product.findMany()` invocation:
+
+
+The column `main.Product.categoryId` does not exist in the current database.
+ GET / 200 in 2469ms
+ GET / 200 in 1021ms
+ GET / 200 in 3047ms
+ ✓ Compiled in 1865ms (1100 modules)
+ GET / 200 in 2549ms
+ GET / 200 in 3154ms
+ ✓ Compiled in 489ms (424 modules)
+ ✓ Compiled in 309ms (424 modules)
+ ✓ Compiled in 263ms (424 modules)
+ ✓ Compiled in 18.6s (1835 modules)
+ ✓ Compiled in 535ms (789 modules)
+ ✓ Compiled in 931ms (1835 modules)
+ GET / 500 in 1431ms
+ ✓ Compiled in 832ms (1815 modules)
+ GET / 500 in 807ms
+ ✓ Compiled in 901ms (1825 modules)
+ GET / 200 in 772ms
+ ✓ Compiled in 566ms (787 modules)
+ ✓ Compiled in 2.4s (1888 modules)
+ GET / 200 in 1126ms
+ ✓ Compiled in 759ms (1888 modules)
+ GET / 200 in 882ms
+ GET / 200 in 1797ms
+ ✓ Compiled in 1912ms (1888 modules)
+ GET / 200 in 1573ms
+ ✓ Compiled in 2.8s (1888 modules)
+ GET / 200 in 885ms
+ ✓ Compiled in 2s (810 modules)
+ GET / 200 in 546ms
+ GET / 200 in 981ms
+ GET / 200 in 808ms
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 6.8s (1779 modules)
+ GET / 404 in 6811ms
+ ○ Compiling / ...
+ ✓ Compiled / in 1274ms (1879 modules)
+ GET / 200 in 1986ms
+ GET / 200 in 223ms
+ GET / 200 in 267ms
+ GET / 200 in 1945ms
+ GET / 200 in 388ms
+ GET / 200 in 656ms
+ ○ Compiling /products ...
+ ✓ Compiled /cart in 4.1s (2098 modules)
+ GET /cart 200 in 3674ms
+ GET /products 500 in 6494ms
+ GET / 200 in 1273ms
+ GET /cart 200 in 77ms
+ GET /products 500 in 951ms
+ GET /products 500 in 1102ms
+ GET / 200 in 107ms
+ GET /products 500 in 1079ms
+ GET /products 500 in 1073ms
+ ✓ Compiled in 3.9s (1924 modules)
+ GET /products 200 in 103ms
+ ✓ Compiled in 1545ms (823 modules)
+ GET /products 200 in 1890ms
+ GET /products 200 in 836ms
+ GET / 200 in 453ms
+ GET / 200 in 572ms
+ GET /products 200 in 466ms
+ ○ Compiling /middleware ...
+ ✓ Compiled /middleware in 1700ms (141 modules)
+ ○ Compiling /account/login ...
+ ✓ Compiled /account/login in 2.9s (1950 modules)
+ GET /account/login 200 in 3458ms
+ GET /account/login 200 in 180ms
+ GET / 200 in 221ms
+ ✓ Compiled in 1627ms (1950 modules)
+ GET / 200 in 873ms
+ GET / 200 in 965ms
+ ✓ Compiled in 1808ms (1950 modules)
+ GET / 200 in 800ms
+ GET / 200 in 823ms
+ ✓ Compiled in 2.5s (1950 modules)
+ GET / 200 in 731ms
+ ✓ Compiled in 2.7s (1950 modules)
+ GET / 200 in 1547ms
+ GET / 200 in 717ms
+ ✓ Compiled in 2.2s (1950 modules)
+ GET / 200 in 617ms
+ ✓ Compiled in 2.3s (1950 modules)
+ GET / 200 in 579ms
+ ○ Compiling /products/[slug] ...
+ ✓ Compiled /products/[slug] in 5s (1957 modules)
+ ✓ Compiled in 5.6s (1971 modules)
+ GET / 200 in 2860ms
+ ✓ Compiled in 2.9s (1957 modules)
+ GET / 200 in 682ms
+ GET /cart 200 in 128ms
+ GET / 200 in 137ms
+ ○ Compiling /products/[slug] ...
+ ✓ Compiled /products/[slug] in 647ms (1140 modules)
+ GET /products/radman-ro-countertop 200 in 1277ms
+ ✓ Compiled in 5.2s (2013 modules)
+ GET /products/radman-ro-countertop 200 in 3215ms
+ GET /products/radman-ro-countertop 200 in 6047ms
+ GET /cart 200 in 143ms
+ GET / 200 in 624ms
+ ○ Compiling /checkout ...
+ ✓ Compiled /checkout in 4.2s (2097 modules)
+ GET /checkout 200 in 4784ms
+ ✓ Compiled in 1843ms (2111 modules)
+ GET /checkout 200 in 883ms
+ GET / 200 in 338ms
+ GET /products/radman-air-purifier-hepa 200 in 349ms
+ GET /account/login 200 in 196ms
+ GET / 200 in 124ms
+ GET /products/radman-ro-countertop 200 in 165ms
+ GET /products 200 in 124ms
+ GET /cart 200 in 128ms
+ ✓ Compiled in 3.6s (2111 modules)
+ ✓ Compiled in 2.5s (2091 modules)
+ GET /products 200 in 2834ms
+ GET /products 200 in 364ms
+ GET /products 200 in 857ms
+ ✓ Compiled in 4.2s (2091 modules)
+ ✓ Compiled in 2.1s (2091 modules)
+ GET /products 200 in 3225ms
+ GET /products 200 in 1315ms
+ GET /products/radman-air-purifier-hepa 200 in 229ms
+ ✓ Compiled in 12s (2093 modules)
+ GET /products/radman-air-purifier-hepa 200 in 2267ms
+ ✓ Compiled in 4.2s (2093 modules)
+ GET /products/radman-air-purifier-hepa 200 in 13626ms
+ GET /cart 200 in 1007ms
+ GET /checkout 200 in 421ms
+ ✓ Compiled in 1813ms (2093 modules)
+ GET /products/radman-air-purifier-hepa 200 in 1634ms
+ GET /cart 200 in 129ms
+ GET /checkout 200 in 254ms
+ ✓ Compiled in 8.6s (2093 modules)
+ GET /cart 200 in 1462ms
+ GET /cart 200 in 12311ms
+ ✓ Compiled in 5.5s (2093 modules)
+ GET /cart 200 in 2077ms
+ GET /cart 200 in 327ms
+ ✓ Compiled in 4.2s (2093 modules)
+ ✓ Compiled in 606ms (861 modules)
+ GET /cart 200 in 1340ms
+ GET /cart 200 in 415ms
+ ✓ Compiled in 460ms (861 modules)
+ GET /cart 200 in 231ms
+ GET /checkout 200 in 642ms
+ GET /checkout 200 in 284ms
+ GET /checkout 200 in 741ms
+ GET /checkout 200 in 320ms
+ ○ Compiling /account/login ...
+ ✓ Compiled /account/login in 5.2s (1252 modules)
+ GET /checkout 200 in 4180ms
+ GET /account/login 200 in 6518ms
+ GET /cart 200 in 1368ms
+ GET /checkout 200 in 103ms
+ GET /account/login?next=%2Fcheckout 200 in 212ms
+ GET /account/login?next=%2Fcheckout 200 in 139ms
+ ○ Compiling /account/register ...
+ ✓ Compiled /account/register in 3s (2116 modules)
+ GET /account/register?next=%2Fcheckout 200 in 4096ms
+ ✓ Compiled in 1331ms (861 modules)
+ GET /account/register?next=%2Fcheckout 200 in 536ms
+ GET /account/register?next=%2Fcheckout 200 in 226ms
+ ✓ Compiled in 1678ms (2103 modules)
+ GET /account/register?next=%2Fcheckout 200 in 639ms
+ ✓ Compiled in 1764ms (2103 modules)
+ GET /account/register?next=%2Fcheckout 200 in 971ms
+ GET /account/login 200 in 556ms
+ GET /checkout 200 in 125ms
+ GET /account/login?next=%2Fcheckout 200 in 125ms
+ GET /account/login?next=%2Fcheckout 200 in 104ms
+ GET / 200 in 232ms
+ GET /account/login 200 in 78ms
+ GET /account/login 200 in 102ms
+ GET /products 200 in 211ms
+ GET / 200 in 151ms
+ GET / 200 in 770ms
+ ○ Compiling /products/[slug] ...
+ ✓ Compiled /products/[slug] in 1724ms (1165 modules)
+ GET /products/radman-air-purifier-hepa 200 in 2428ms
+ GET /cart 200 in 114ms
+ ○ Compiling /track ...
+ ✓ Compiled /track in 2.7s (2005 modules)
+ GET /track 200 in 3072ms
+ GET /track 200 in 61ms
+ GET /track 200 in 63ms
+ GET /account/login 200 in 138ms
+ ✓ Compiled in 7.4s (2147 modules)
+ GET /account/login 200 in 2003ms
+ ✓ Compiled in 1140ms (861 modules)
+ GET /account/login 200 in 5071ms
+ ✓ Compiled in 3.1s (2147 modules)
+ ✓ Compiled in 637ms (861 modules)
+ GET /account/login 200 in 1820ms
+ ✓ Compiled in 2.5s (2147 modules)
+ ✓ Compiled in 541ms (861 modules)
+ GET /account/register 200 in 926ms
+ ✓ Compiled in 991ms (861 modules)
+ GET /account/register 200 in 715ms
+ GET /account/register 200 in 252ms
+ GET /account/register 200 in 321ms
+ GET /account/register 200 in 296ms
+ ✓ Compiled in 477ms (861 modules)
+ GET /account/register 200 in 376ms
+ ✓ Compiled in 822ms (861 modules)
+ GET /account/register 200 in 249ms
+ ○ Compiling /cart ...
+ ✓ Compiled /cart in 7.6s (2013 modules)
+ GET /track 200 in 6079ms
+ GET /cart 200 in 6721ms
+ GET /products 200 in 5983ms
+ GET /account/login 200 in 724ms
+ GET /track 200 in 128ms
+ GET /account/login 200 in 89ms
+ GET /track 200 in 67ms
+ GET /account/login 200 in 73ms
+ ○ Compiling /api/auth/request-otp ...
+ ✓ Compiled /api/auth/request-otp in 4s (2032 modules)
+ POST /api/auth/request-otp 200 in 4393ms
+ GET /account/login 200 in 314ms
+ ○ Compiling /api/auth/verify-otp ...
+ ✓ Compiled /api/auth/verify-otp in 898ms (2034 modules)
+ POST /api/auth/verify-otp 400 in 1084ms
+ GET /account/login 200 in 343ms
+ POST /api/auth/verify-otp 400 in 53ms
+ POST /api/auth/verify-otp 400 in 33ms
+ GET /account/login 200 in 654ms
+ POST /api/auth/request-otp 200 in 59ms
+ POST /api/auth/verify-otp 404 in 51ms
+ GET /account/register 200 in 108ms
+ ✓ Compiled in 14.5s (2198 modules)
+ GET /account/register 200 in 4395ms
+ ✓ Compiled in 2.1s (2178 modules)
+ GET /account/register 200 in 829ms
+ ✓ Compiled in 876ms (945 modules)
+ GET /account/register 200 in 741ms
+ GET /products 200 in 1106ms
+ GET /account/login 200 in 325ms
+ ✓ Compiled in 609ms (945 modules)
+ GET /account/register 200 in 215ms
+ GET /account/register 200 in 628ms
+ GET /products 200 in 189ms
+ ✓ Compiled in 7s (2178 modules)
+ GET /products 200 in 6880ms
+ GET /products 200 in 492ms
+ GET /products 200 in 1754ms
+ ✓ Compiled in 5.5s (2178 modules)
+ GET /products 200 in 4900ms
+ ✓ Compiled in 7.3s (2168 modules)
+ GET /products 200 in 8981ms
+ GET /products 200 in 496ms
+ ✓ Compiled in 1284ms (2182 modules)
+ GET /products 200 in 579ms
+ GET /products 200 in 803ms
+ ○ Compiling / ...
+ ✓ Compiled / in 2.9s (2178 modules)
+ GET / 200 in 3440ms
+ GET / 200 in 221ms
+ GET / 200 in 441ms
+ GET /products/radman-air-purifier-plus 200 in 208ms
+ ○ Compiling /cart ...
+ ✓ Compiled /cart in 1639ms (1260 modules)
+ GET /cart 200 in 1890ms
+ GET /cart 200 in 211ms
+ ○ Compiling /checkout ...
+ ✓ Compiled /checkout in 8.5s (1337 modules)
+ GET /checkout 200 in 9208ms
+ GET /checkout 200 in 334ms
+ ○ Compiling /account/login ...
+ ✓ Compiled /account/login in 2.2s (1344 modules)
+ GET /account/login?next=%2Fcheckout 200 in 2566ms
+ GET /account/login?next=%2Fcheckout 200 in 115ms
+ ○ Compiling /api/auth/request-otp ...
+ ✓ Compiled /api/auth/request-otp in 3.6s (1345 modules)
+ POST /api/auth/request-otp 200 in 3962ms
+ ✓ Compiled in 2.2s (945 modules)
+ ○ Compiling /api/auth/verify-otp ...
+ ✓ Compiled /api/auth/verify-otp in 922ms (1333 modules)
+ ✓ Compiled in 1431ms (2278 modules)
+ GET /account/login?next=%2Fcheckout 200 in 8363ms
+ ✓ Compiled in 14s (2302 modules)
+ POST /api/auth/verify-otp 400 in 19299ms
+ ✓ Compiled in 1ms (1346 modules)
+ POST /api/auth/verify-otp 400 in 4299ms
+ GET /account/login?next=%2Fcheckout 200 in 17862ms
+ GET /account/login?next=%2Fcheckout 200 in 349ms
+ GET / 200 in 856ms
+ GET /cart 200 in 365ms
+ GET /cart 200 in 126ms
+ ✓ Compiled in 3.1s (2282 modules)
+ GET /cart 200 in 1799ms
+ ✓ Compiled in 1571ms (2282 modules)
+ GET /cart 200 in 565ms
+ ✓ Compiled in 3.7s (2282 modules)
+ GET /cart 200 in 681ms
+ ✓ Compiled in 2.8s (956 modules)
+ GET /cart 200 in 217ms
+ ✓ Compiled in 618ms (956 modules)
+ GET /cart 200 in 422ms
+ ✓ Compiled in 3s (2282 modules)
+ GET /cart 200 in 563ms
+ ✓ Compiled in 6.7s (2282 modules)
+ GET /cart 200 in 334ms
+ ○ Compiling /products ...
+ ✓ Compiled /products in 4.4s (1331 modules)
+ GET /products 200 in 5700ms
+ GET /cart 200 in 1405ms
+ GET /cart 200 in 290ms
+ GET /checkout 200 in 265ms
+ GET /cart 200 in 567ms
+ ✓ Compiled in 4.2s (2282 modules)
+ GET /cart 200 in 769ms
+ ✓ Compiled in 2.5s (956 modules)
+ GET /cart 200 in 335ms
+ ✓ Compiled in 741ms (956 modules)
+ GET /cart 200 in 207ms
+ ○ Compiling /admin/login ...
+ ✓ Compiled /admin/login in 9s (2304 modules)
+ GET /admin/login 200 in 10178ms
+ ✓ Compiled in 5.1s (2304 modules)
+ GET /cart 200 in 472ms
+ GET /checkout 200 in 169ms
+ GET /account/login?next=%2Fcheckout 200 in 153ms
+ GET /account/login?next=%2Fcheckout 200 in 95ms
+ ✓ Compiled in 4.3s (2289 modules)
+ GET /account/login?next=%2Fcheckout 200 in 3486ms
+ GET /account/login?next=/checkout 200 in 6188ms
+ ○ Compiling /api/auth/request-otp ...
+ ✓ Compiled /api/auth/request-otp in 2.8s (1344 modules)
+ POST /api/auth/request-otp 200 in 3024ms
+ ✓ Compiled in 16.2s (2289 modules)
+ GET /account/login?next=%2Fcheckout 200 in 2515ms
+ GET /account/login?next=/checkout 200 in 1834ms
+ GET /account/login 200 in 430ms
+ ✓ Compiled in 1633ms (2289 modules)
+ GET /account/login?next=%2Fcheckout 200 in 366ms
+ ○ Compiling /api/auth/request-otp ...
+ ✓ Compiled /api/auth/request-otp in 4.2s (1344 modules)
+ POST /api/auth/request-otp 200 in 4854ms
+ ○ Compiling /api/auth/verify-otp ...
+ ✓ Compiled /api/auth/verify-otp in 1961ms (1348 modules)
+ POST /api/auth/verify-otp 400 in 2133ms
+ GET /account/login?next=%2Fcheckout 200 in 340ms
+ POST /api/auth/verify-otp 400 in 51ms
+ ✓ Compiled in 2.9s (2309 modules)
+ GET /account/login?next=%2Fcheckout 200 in 385ms
+ POST /api/auth/verify-otp 200 in 511ms
+ POST /api/auth/verify-otp 200 in 66ms
+ GET /checkout 200 in 1234ms
+ ✓ Compiled in 8.9s (2289 modules)
+ GET /checkout 200 in 990ms
+ GET /checkout 200 in 630ms
+ ○ Compiling /account ...
+ ✓ Compiled /account in 6.9s (2291 modules)
+ GET /account 200 in 8714ms
+ GET /account 200 in 117ms
+ ✓ Compiled in 3.4s (2302 modules)
+ GET /account 200 in 1697ms
+ ✓ Compiled in 2s (2302 modules)
+ GET /account 200 in 533ms
+ ✓ Compiled in 1377ms (2302 modules)
+ GET /account 200 in 333ms
+ ✓ Compiled in 8.4s (2302 modules)
+ GET /account 200 in 395ms
+ GET /checkout 200 in 756ms
+ GET /cart 200 in 167ms
+ GET /checkout 200 in 112ms
+ ✓ Compiled in 8.9s (2302 modules)
+ GET /checkout 200 in 667ms

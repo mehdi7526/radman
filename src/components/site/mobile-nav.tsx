@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { useEffect, useId, useState } from "react";
+import { Collapse, Divider, List, ListItemButton, ListItemText, Paper } from "@mui/material";
 import { Button } from "@/components/ui/button";
 
 type MobileNavProps = {
@@ -46,35 +47,26 @@ export function MobileNav({ authLink }: MobileNavProps) {
         {open ? <X className="size-5" aria-hidden="true" /> : <Menu className="size-5" aria-hidden="true" />}
       </Button>
 
-      {open ? (
-        <>
-          <button
-            type="button"
-            className="fixed inset-0 z-overlay bg-foreground/20"
-            aria-label="بستن منو"
-            onClick={() => setOpen(false)}
-          />
-          <nav
-            id={panelId}
-            aria-label="منوی اصلی"
-            className="fixed inset-x-0 top-[72px] z-modal border-b border-border bg-porcelain px-4 py-4 shadow-lift"
-          >
-            <ul className="space-y-1">
-              {[...links, authLink].map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="flex min-h-11 items-center px-3 text-sm font-semibold text-foreground hover:bg-muted"
-                    onClick={() => setOpen(false)}
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
-        </>
-      ) : null}
+      {open ? <button type="button" className="fixed inset-0 z-overlay bg-slate-950/20 backdrop-blur-[1px]" aria-label="بستن منو" onClick={() => setOpen(false)} /> : null}
+      <Collapse
+        in={open}
+        timeout={260}
+        unmountOnExit
+        className="fixed inset-x-3 top-[76px] z-modal origin-top"
+      >
+        <Paper component="nav" id={panelId} aria-label="منوی اصلی" elevation={0} className="overflow-hidden rounded-2xl border border-[#dbe7e8] bg-white/95 p-2 shadow-[0_18px_42px_rgba(18,53,72,0.2)] backdrop-blur-xl">
+          <List disablePadding>
+            {[...links, authLink].map((link, index) => (
+              <div key={link.href}>
+                {index === links.length ? <Divider sx={{ my: 0.75 }} /> : null}
+                <ListItemButton component={Link} href={link.href} onClick={() => setOpen(false)} sx={{ minHeight: 48, borderRadius: 2, px: 2, "&:hover": { backgroundColor: "#eaf5f5" } }}>
+                  <ListItemText primary={link.label} slotProps={{ primary: { sx: { fontSize: 14, fontWeight: 700, color: "#183247" } } }} />
+                </ListItemButton>
+              </div>
+            ))}
+          </List>
+        </Paper>
+      </Collapse>
     </div>
   );
 }
