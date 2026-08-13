@@ -26,6 +26,8 @@ type CheckoutFormProps = {
     customerName?: string;
     customerPhone?: string;
     customerEmail?: string;
+    postalCode?: string;
+    address?: string;
   };
 };
 
@@ -108,8 +110,8 @@ export function CheckoutForm({ shippingMethods, defaultValues }: CheckoutFormPro
           <Input name="customerPhone" defaultValue={defaultValues?.customerPhone} required inputMode="tel" />
         </div>
         <Input name="customerEmail" type="email" defaultValue={defaultValues?.customerEmail} />
-        <Input name="postalCode" inputMode="numeric" pattern="[0-9]{10}" maxLength={10} required dir="ltr" />
-        <Textarea name="address" required />
+        <Input name="postalCode" defaultValue={defaultValues?.postalCode} inputMode="numeric" pattern="[0-9]{10}" maxLength={10} required dir="ltr" />
+        <Textarea name="address" defaultValue={defaultValues?.address} required />
         <Textarea name="note" />
 
         <div className="space-y-4 rounded-2xl border border-border bg-slate-50/60 p-5">

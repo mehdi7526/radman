@@ -181,6 +181,34 @@ async function main() {
       "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
     );
   `);
+
+  await prisma.$executeRawUnsafe(`CREATE TABLE IF NOT EXISTS "Address" (
+    "id" TEXT NOT NULL PRIMARY KEY, "userId" TEXT NOT NULL, "title" TEXT NOT NULL, "recipient" TEXT NOT NULL,
+    "phone" TEXT NOT NULL, "province" TEXT NOT NULL, "city" TEXT NOT NULL, "postalCode" TEXT NOT NULL,
+    "address" TEXT NOT NULL, "plaque" TEXT, "unit" TEXT, "isDefault" BOOLEAN NOT NULL DEFAULT false,
+    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP, "updatedAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE
+  );`);
+  await prisma.$executeRawUnsafe(`CREATE TABLE IF NOT EXISTS "OrderEvent" (
+    "id" TEXT NOT NULL PRIMARY KEY, "orderId" TEXT NOT NULL, "type" TEXT NOT NULL, "message" TEXT NOT NULL,
+    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP, FOREIGN KEY ("orderId") REFERENCES "Order"("id") ON DELETE CASCADE
+  );`);
+  await prisma.$executeRawUnsafe(`CREATE TABLE IF NOT EXISTS "SupportTicket" (
+    "id" TEXT NOT NULL PRIMARY KEY, "userId" TEXT NOT NULL, "orderId" TEXT, "subject" TEXT NOT NULL,
+    "status" TEXT NOT NULL DEFAULT 'OPEN', "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP, FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE,
+    FOREIGN KEY ("orderId") REFERENCES "Order"("id") ON DELETE SET NULL
+  );`);
+  await prisma.$executeRawUnsafe(`CREATE TABLE IF NOT EXISTS "TicketMessage" (
+    "id" TEXT NOT NULL PRIMARY KEY, "ticketId" TEXT NOT NULL, "body" TEXT NOT NULL, "isAdmin" BOOLEAN NOT NULL DEFAULT false,
+    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP, FOREIGN KEY ("ticketId") REFERENCES "SupportTicket"("id") ON DELETE CASCADE
+  );`);
+  await prisma.$executeRawUnsafe(`CREATE TABLE IF NOT EXISTS "ReturnRequest" (
+    "id" TEXT NOT NULL PRIMARY KEY, "orderId" TEXT NOT NULL, "userId" TEXT NOT NULL, "type" TEXT NOT NULL,
+    "reason" TEXT NOT NULL, "status" TEXT NOT NULL DEFAULT 'REQUESTED', "adminNote" TEXT,
+    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP, "updatedAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY ("orderId") REFERENCES "Order"("id") ON DELETE CASCADE, FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE
+  );`);
 }
 
 main()

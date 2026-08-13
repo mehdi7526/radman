@@ -33,15 +33,9 @@ export default async function AdminLoginPage({ searchParams }: LoginPageProps) {
           </p>
         ) : null}
         <form action={loginAdmin} className="mt-6 space-y-4">
-          <label className="space-y-2 text-sm font-medium">
-            ایمیل
-            <Input name="email" type="email" required dir="ltr" />
-          </label>
-          <label className="space-y-2 text-sm font-medium">
-            رمز عبور
-            <PasswordInput name="password" required dir="ltr" />
-          </label>
-          <Button className="w-full">ورود</Button>
+          <Input name="email" type="email" required dir="ltr" autoComplete="email" />
+          <PasswordInput name="password" required dir="ltr" autoComplete="current-password" />
+          <Button type="submit" className="w-full">ورود</Button>
         </form>
       </Card>
     </div>

@@ -5,6 +5,7 @@ import { z } from "zod";
 import { hashPassword } from "@/lib/auth/password";
 import { createSession, destroySession, requireCustomer } from "@/lib/auth/session";
 import { prisma } from "@/lib/db";
+import { revalidatePath } from "next/cache";
 
 const registerSchema = z.object({
   name: z.string().trim().min(2),
@@ -76,4 +77,44 @@ export async function updateCustomerProfile(formData: FormData) {
   });
 
   redirect("/account");
+}
+
+export async function saveAddress(formData: FormData) {
+  const user = await requireCustomer();
+  const id = String(formData.get("id") ?? "");
+  const data = {
+    title: String(formData.get("title") ?? "خانه").trim(),
+    recipient: String(formData.get("recipient") ?? "").trim(),
+    phone: String(formData.get("phone") ?? "").trim(),
+    province: String(formData.get("province") ?? "").trim(),
+    city: String(formData.get("city") ?? "").trim(),
+    postalCode: String(formData.get("postalCode") ?? "").trim(),
+    address: String(formData.get("address") ?? "").trim(),
+    plaque: String(formData.get("plaque") ?? "").trim() || null,
+    unit: String(formData.get("unit") ?? "").trim() || null,
+    isDefault: formData.get("isDefault") === "on"
+  };
+  if (!data.recipient || !data.phone || !data.province || !data.city || !/^\d{10}$/.test(data.postalCode) || data.address.length < 8) {
+    redirect("/account?addressError=1");
+  }
+  await prisma.$transaction(async (tx) => {
+    if (data.isDefault) await tx.address.updateMany({ where: { userId: user.id }, data: { isDefault: false } });
+    if (id) {
+      await tx.address.updateMany({ where: { id, userId: user.id }, data });
+    } else {
+      const count = await tx.address.count({ where: { userId: user.id } });
+      await tx.address.create({ data: { ...data, isDefault: data.isDefault || count === 0, userId: user.id } });
+    }
+  });
+  revalidatePath("/account");
+  revalidatePath("/checkout");
+  redirect("/account");
+}
+
+export async function deleteAddress(formData: FormData) {
+  const user = await requireCustomer();
+  const id = String(formData.get("id") ?? "");
+  await prisma.address.deleteMany({ where: { id, userId: user.id } });
+  revalidatePath("/account");
+  revalidatePath("/checkout");
 }

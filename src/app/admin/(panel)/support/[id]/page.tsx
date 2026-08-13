@@ -1,0 +1,9 @@
+import { notFound } from "next/navigation";
+import { replyToSupportTicket } from "@/app/admin/actions";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import { Textarea } from "@/components/ui/textarea";
+import { prisma } from "@/lib/db";
+import { formatDate } from "@/lib/format";
+
+export default async function AdminTicketPage({ params }: { params: Promise<{ id: string }> }) { const { id } = await params; const ticket = await prisma.supportTicket.findUnique({ where: { id }, include: { user: true, order: true, messages: { orderBy: { createdAt: "asc" } } } }); if (!ticket) notFound(); return <div className="space-y-6"><div><p className="text-sm font-bold text-primary">تیکت پشتیبانی</p><h1 className="mt-2 text-3xl font-black text-sky-950">{ticket.subject}</h1><p className="mt-2 text-sm text-muted-foreground">{ticket.user.name} · {ticket.user.phone} {ticket.order ? `· سفارش ${ticket.order.id}` : ""}</p></div><Card className="p-6"><div className="space-y-4">{ticket.messages.map(message => <div key={message.id} className={`rounded-xl p-4 text-sm ${message.isAdmin ? "bg-sky-50" : "bg-slate-100"}`}><p className="font-bold">{message.isAdmin ? "پشتیبانی" : ticket.user.name}</p><p className="mt-2 whitespace-pre-wrap">{message.body}</p><p className="mt-2 text-xs text-muted-foreground">{formatDate(message.createdAt)}</p></div>)}</div><form action={replyToSupportTicket} className="mt-6 space-y-4"><input type="hidden" name="ticketId" value={ticket.id} /><Textarea name="body" placeholder="پاسخ پشتیبانی" required /><select name="status" defaultValue="ANSWERED" className="h-11 rounded-xl border bg-white px-3 text-sm"><option value="ANSWERED">پاسخ داده شد</option><option value="CLOSED">بستن تیکت</option></select><Button type="submit">ارسال پاسخ</Button></form></Card></div>; }

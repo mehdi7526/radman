@@ -120,6 +120,28 @@ export async function logoutAdmin() {
   redirect("/admin/login");
 }
 
+export async function replyToSupportTicket(formData: FormData) {
+  await requireAdmin();
+  const ticketId = String(formData.get("ticketId") ?? "");
+  const body = String(formData.get("body") ?? "").trim();
+  const status = String(formData.get("status") ?? "ANSWERED");
+  if (!body) return;
+  await prisma.supportTicket.update({ where: { id: ticketId }, data: { status: status as "OPEN" | "ANSWERED" | "CLOSED", messages: { create: { body, isAdmin: true } } } });
+  revalidatePath(`/admin/support/${ticketId}`);
+  revalidatePath("/admin/support");
+}
+
+export async function updateReturnRequest(formData: FormData) {
+  await requireAdmin();
+  const id = String(formData.get("id") ?? "");
+  const status = String(formData.get("status") ?? "REQUESTED");
+  const adminNote = String(formData.get("adminNote") ?? "").trim() || null;
+  const request = await prisma.returnRequest.update({ where: { id }, data: { status: status as "REQUESTED" | "APPROVED" | "REJECTED" | "RECEIVED" | "REFUNDED", adminNote }, include: { order: true } });
+  await prisma.orderEvent.create({ data: { orderId: request.orderId, type: "service_updated", message: `${request.type}: ${status}${adminNote ? ` — ${adminNote}` : ""}` } });
+  revalidatePath("/admin/requests");
+  revalidatePath(`/account/orders/${request.orderId}`);
+}
+
 export async function saveProduct(formData: FormData) {
   await requireAdmin();
 

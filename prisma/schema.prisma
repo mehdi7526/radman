@@ -32,6 +32,20 @@ enum DiscountType {
   FIXED
 }
 
+enum SupportTicketStatus {
+  OPEN
+  ANSWERED
+  CLOSED
+}
+
+enum ReturnRequestStatus {
+  REQUESTED
+  APPROVED
+  REJECTED
+  RECEIVED
+  REFUNDED
+}
+
 model User {
   id           String   @id @default(cuid())
   email        String   @unique
@@ -42,6 +56,27 @@ model User {
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
   orders       Order[]
+  addresses    Address[]
+  tickets      SupportTicket[]
+  returnRequests ReturnRequest[] @relation("CustomerReturnRequests")
+}
+
+model Address {
+  id          String   @id @default(cuid())
+  userId      String
+  title       String
+  recipient   String
+  phone       String
+  province    String
+  city        String
+  postalCode  String
+  address     String
+  plaque      String?
+  unit        String?
+  isDefault   Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model Category {
@@ -133,6 +168,54 @@ model Order {
   shippingMethod   ShippingMethod? @relation(fields: [shippingMethodId], references: [id], onDelete: SetNull)
   items            OrderItem[]
   payment          Payment?
+  tickets          SupportTicket[]
+  returnRequests   ReturnRequest[]
+  events           OrderEvent[]
+}
+
+model OrderEvent {
+  id        String   @id @default(cuid())
+  orderId   String
+  type      String
+  message   String
+  createdAt DateTime @default(now())
+  order     Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+}
+
+model SupportTicket {
+  id        String              @id @default(cuid())
+  userId    String
+  orderId   String?
+  subject   String
+  status    SupportTicketStatus @default(OPEN)
+  createdAt DateTime            @default(now())
+  updatedAt DateTime            @updatedAt
+  user      User                @relation(fields: [userId], references: [id], onDelete: Cascade)
+  order     Order?              @relation(fields: [orderId], references: [id], onDelete: SetNull)
+  messages  TicketMessage[]
+}
+
+model TicketMessage {
+  id        String        @id @default(cuid())
+  ticketId  String
+  body      String
+  isAdmin   Boolean       @default(false)
+  createdAt DateTime      @default(now())
+  ticket    SupportTicket @relation(fields: [ticketId], references: [id], onDelete: Cascade)
+}
+
+model ReturnRequest {
+  id        String              @id @default(cuid())
+  orderId   String
+  userId    String
+  type      String
+  reason    String
+  status    ReturnRequestStatus @default(REQUESTED)
+  adminNote String?
+  createdAt DateTime            @default(now())
+  updatedAt DateTime            @updatedAt
+  order     Order               @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  user      User                @relation("CustomerReturnRequests", fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model OrderItem {

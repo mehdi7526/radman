@@ -13,6 +13,7 @@ import { Button } from "@/components/ui/button";
 import { ProductCard } from "@/components/product/product-card";
 import { brand } from "@/lib/brand";
 import { getCachedFeaturedProducts } from "@/lib/queries/products";
+import { IranWaterQualityMap } from "@/components/water-quality/iran-water-quality-map";
 
 export const revalidate = 60;
 
@@ -233,6 +234,8 @@ export default async function HomePage() {
           ))}
         </div>
       </section>
+
+      <IranWaterQualityMap />
 
       <section
         aria-labelledby="featured-heading"

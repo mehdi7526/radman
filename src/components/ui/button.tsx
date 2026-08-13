@@ -12,7 +12,7 @@ export interface ButtonProps extends Omit<MuiButtonProps, "variant" | "size" | "
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant = "default", size = "default", asChild = false, sx, children, ...props }, ref) => {
+  ({ className, variant = "default", size = "default", asChild = false, sx, children, type, ...props }, ref) => {
     const firstChild = asChild ? React.Children.toArray(children)[0] : null;
     const child = firstChild && React.isValidElement(firstChild)
       ? firstChild as React.ReactElement<{ href?: string; children?: React.ReactNode }>
@@ -27,6 +27,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         variant={muiVariant}
         color={color}
         size={size === "sm" ? "small" : size === "lg" ? "large" : "medium"}
+        type={type ?? (asChild ? undefined : "button")}
         className={className}
         sx={{ ...(variant === "accent" ? { backgroundColor: "#b8894d", color: "#112033", "&:hover": { backgroundColor: "#a87a40" } } : {}), ...(size === "icon" ? { minWidth: 44, width: 44, px: 0 } : {}), ...sx }}
         {...props}

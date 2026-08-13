@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { LayoutDashboard, LogOut, Package, Percent, ShoppingBag, Tags, Truck } from "lucide-react";
+import { Headphones, LayoutDashboard, LogOut, Package, Percent, RotateCcw, ShoppingBag, Tags, Truck } from "lucide-react";
 import { logoutAdmin } from "@/app/admin/actions";
 import { Logo } from "@/components/brand/logo";
 import { Button } from "@/components/ui/button";
@@ -12,6 +12,8 @@ const navItems = [
   { href: "/admin/categories", label: "دسته‌بندی‌ها", icon: Tags },
   { href: "/admin/coupons", label: "کدهای تخفیف", icon: Percent },
   { href: "/admin/shipping", label: "روش‌های ارسال", icon: Truck }
+  , { href: "/admin/support", label: "پشتیبانی", icon: Headphones }
+  , { href: "/admin/requests", label: "لغو و مرجوعی", icon: RotateCcw }
 ];
 
 export default async function AdminPanelLayout({ children }: { children: React.ReactNode }) {
@@ -35,7 +37,7 @@ export default async function AdminPanelLayout({ children }: { children: React.R
           ))}
         </nav>
         <form action={logoutAdmin}>
-          <Button variant="outline" className="w-full">
+          <Button type="submit" variant="outline" className="w-full">
             <LogOut className="size-4" aria-hidden="true" />
             خروج
           </Button>
