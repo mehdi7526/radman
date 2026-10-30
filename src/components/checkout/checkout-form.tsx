@@ -35,13 +35,15 @@ export function CheckoutForm({ shippingMethods, defaultValues }: CheckoutFormPro
   const { items, total, removeItem, isReady } = useCart();
   const [error, setError] = useState<string | null>(null);
   const [couponCode, setCouponCode] = useState("");
-  const [discount, setDiscount] = useState(0);
+  const [appliedCoupon, setAppliedCoupon] = useState<{ code: string; subtotal: number; discount: number } | null>(null);
   const [couponMessage, setCouponMessage] = useState<string | null>(null);
   const [shippingMethodId, setShippingMethodId] = useState(shippingMethods[0]?.id ?? "");
   const [isPending, startTransition] = useTransition();
   const [isCheckingCoupon, startCouponTransition] = useTransition();
 
   const shippingCost = shippingMethods.find((method) => method.id === shippingMethodId)?.price ?? 0;
+  const couponIsApplied = appliedCoupon?.code === couponCode.trim() && appliedCoupon?.subtotal === total;
+  const discount = couponIsApplied ? appliedCoupon.discount : 0;
   const payable = Math.max(0, total - discount + shippingCost);
 
   if (!isReady) {
@@ -89,7 +91,7 @@ export function CheckoutForm({ shippingMethods, defaultValues }: CheckoutFormPro
               postalCode: String(formData.get("postalCode")),
               address: String(formData.get("address")),
               note: String(formData.get("note")),
-              couponCode: couponCode || undefined,
+              couponCode: couponIsApplied ? appliedCoupon.code : undefined,
               shippingMethodId,
               items: items.map((item) => ({ productId: item.productId, quantity: item.quantity }))
             });
@@ -142,7 +144,12 @@ export function CheckoutForm({ shippingMethods, defaultValues }: CheckoutFormPro
           <div className="flex gap-2">
             <Input
               value={couponCode}
-              onChange={(event) => setCouponCode(event.target.value.toUpperCase())}
+              disabled={isCheckingCoupon || isPending}
+              onChange={(event) => {
+                setCouponCode(event.target.value.toUpperCase());
+                setAppliedCoupon(null);
+                setCouponMessage(null);
+              }}
               placeholder="مثلاً RADMAN10"
               dir="ltr"
             />
@@ -154,10 +161,10 @@ export function CheckoutForm({ shippingMethods, defaultValues }: CheckoutFormPro
                 startCouponTransition(async () => {
                   const result = await validateCouponCode(couponCode, total);
                   if (result.ok) {
-                    setDiscount(result.discount);
-                    setCouponMessage(`تخفیف ${formatPrice(result.discount)} اعمال شد.`);
+                    setAppliedCoupon({ code: result.code, subtotal: total, discount: result.discount });
+                    setCouponMessage(null);
                   } else {
-                    setDiscount(0);
+                    setAppliedCoupon(null);
                     setCouponMessage(result.error);
                   }
                 });
@@ -167,6 +174,7 @@ export function CheckoutForm({ shippingMethods, defaultValues }: CheckoutFormPro
             </Button>
           </div>
           {couponMessage ? <p className="text-sm text-muted-foreground">{couponMessage}</p> : null}
+          {couponIsApplied ? <p className="text-sm text-emerald-700">تخفیف {formatPrice(discount)} اعمال شد.</p> : null}
         </div>
 
       </form>
@@ -206,7 +214,7 @@ export function CheckoutForm({ shippingMethods, defaultValues }: CheckoutFormPro
           <span>مبلغ قابل پرداخت</span>
           <span className="text-primary">{formatPrice(payable)}</span>
         </div>
-        <Button form="checkout-form" type="submit" disabled={isPending} size="lg" className="w-full">
+        <Button form="checkout-form" type="submit" disabled={isPending || isCheckingCoupon} size="lg" className="w-full">
           {isPending ? <Loader2 className="h-5 w-5 animate-spin" /> : null}
           {isPending ? "در حال انتقال به پرداخت…" : `پرداخت آزمایشی — ${formatPrice(payable)}`}
         </Button>

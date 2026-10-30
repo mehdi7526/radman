@@ -24,7 +24,7 @@ export default async function CheckoutResultPage({ searchParams }: ResultPagePro
           <XCircle className="mx-auto h-16 w-16 text-destructive" />
         )}
         <h1 className="mt-5 text-3xl font-black text-sky-950">
-          {result?.ok ? "سفارش با موفقیت ثبت شد" : "پرداخت ناموفق بود"}
+          {result?.ok ? "سفارش با موفقیت ثبت شد" : result && "pending" in result && result.pending ? "پرداخت هنوز انجام نشده" : "پرداخت ناموفق بود"}
         </h1>
         {result?.ok ? (
           <p className="mt-4 leading-8 text-muted-foreground">
@@ -38,10 +38,12 @@ export default async function CheckoutResultPage({ searchParams }: ResultPagePro
           <p className="mt-4 text-muted-foreground">
             {result && "error" in result && typeof result.error === "string"
               ? result.error
-              : "امکان تایید پرداخت وجود نداشت."}
+              : result && "pending" in result && result.pending ? "برای تکمیل سفارش به درگاه پرداخت برگردید." : "امکان تایید پرداخت وجود نداشت."}
           </p>
         )}
         <div className="mt-8 flex flex-wrap justify-center gap-3">
+          {result && "pending" in result && result.pending ? <Button asChild><Link href={`/checkout/mock?authority=${encodeURIComponent(params.authority ?? "")}`}>بازگشت به درگاه</Link></Button> : null}
+          {result && !result.ok && !("pending" in result && result.pending) ? <Button asChild variant="outline"><Link href="/checkout">تلاش مجدد</Link></Button> : null}
           {result?.ok ? (
             <>
               <Button asChild variant="outline">

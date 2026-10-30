@@ -10,6 +10,7 @@ import { hashPassword, needsRehash, verifyPassword } from "@/lib/auth/password";
 import { createSession, destroySession, requireAdmin } from "@/lib/auth/session";
 import { prisma } from "@/lib/db";
 import { getStorageProvider } from "@/lib/storage/provider";
+import { changeOrderStatus } from "@/lib/orders";
 
 const productSchema = z.object({
   id: z.string().optional(),
@@ -136,8 +137,16 @@ export async function updateReturnRequest(formData: FormData) {
   const id = String(formData.get("id") ?? "");
   const status = String(formData.get("status") ?? "REQUESTED");
   const adminNote = String(formData.get("adminNote") ?? "").trim() || null;
-  const request = await prisma.returnRequest.update({ where: { id }, data: { status: status as "REQUESTED" | "APPROVED" | "REJECTED" | "RECEIVED" | "REFUNDED", adminNote }, include: { order: true } });
-  await prisma.orderEvent.create({ data: { orderId: request.orderId, type: "service_updated", message: `${request.type}: ${status}${adminNote ? ` — ${adminNote}` : ""}` } });
+  const request = await prisma.$transaction(async tx => {
+    const request = await tx.returnRequest.update({ where: { id }, data: { status: status as "REQUESTED" | "APPROVED" | "REJECTED" | "RECEIVED" | "REFUNDED", adminNote }, include: { order: true } });
+    if (request.type === "CANCEL" && status === "APPROVED") await changeOrderStatus(tx, request.orderId, "CANCELLED");
+    await tx.orderEvent.create({ data: { orderId: request.orderId, type: "service_updated", message: `${request.type}: ${status}${adminNote ? ` — ${adminNote}` : ""}` } });
+    return request;
+  });
+  revalidateTag("products");
+  revalidatePath("/admin");
+  revalidatePath("/admin/orders");
+  revalidatePath(`/admin/orders/${request.orderId}`);
   revalidatePath("/admin/requests");
   revalidatePath(`/account/orders/${request.orderId}`);
 }
@@ -335,17 +344,15 @@ export async function deleteShippingMethod(formData: FormData) {
 export async function updateOrderStatus(formData: FormData) {
   await requireAdmin();
   const id = String(formData.get("id"));
-  const status = String(formData.get("status"));
+  const status = z.enum(["PAID", "PROCESSING", "SHIPPED", "DELIVERED", "CANCELLED"]).parse(formData.get("status"));
   const trackingCode = String(formData.get("trackingCode") || "");
 
-  await prisma.order.update({
-    where: { id },
-    data: {
-      status: status as "PAID" | "PROCESSING" | "SHIPPED" | "DELIVERED" | "CANCELLED",
-      trackingCode: trackingCode || null
-    }
-  });
+  const result = await prisma.$transaction((tx) => changeOrderStatus(tx, id, status, trackingCode || null));
+  if (!result.ok) redirect(`/admin/orders/${id}?error=${encodeURIComponent(result.error)}`);
 
+  revalidateTag("products");
+  revalidatePath("/admin");
+  revalidatePath("/admin/products");
   revalidatePath("/admin/orders");
   revalidatePath(`/admin/orders/${id}`);
   revalidatePath(`/account/orders/${id}`);

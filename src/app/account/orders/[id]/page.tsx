@@ -19,7 +19,7 @@ export default async function AccountOrderDetailPage({ params }: OrderDetailPage
   const order = await prisma.order.findFirst({
     where: {
       id,
-      OR: [{ userId: user.id }, { customerPhone: user.phone ?? "" }]
+      userId: user.id
     },
     include: {
       items: { include: { product: true } },

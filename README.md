@@ -51,6 +51,12 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000).
 
+### Mock payment testing
+
+With `PAYMENT_PROVIDER=mock`, checkout opens a local mock gateway showing the order amount. Choose success, failure, or cancellation; no card details or real money are involved. An undecided payment stays pending, failed payments keep the cart for a new attempt, and repeated callbacks do not charge stock again. Cancelling a paid order from admin (or approving its cancellation request) restores inventory once; cancelled orders cannot be reactivated. Refund transfers are not simulated.
+
+Run `npm run test:checkout` for payment/cancellation regression checks against a disposable SQLite database. The local shop database is not used by this test.
+
 ### Default Admin Login
 
 | Field | Value |

@@ -8,10 +8,12 @@ import { adminOrderStatuses, formatDate, formatOrderStatus, formatPrice, orderSt
 
 type OrderDetailPageProps = {
   params: Promise<{ id: string }>;
+  searchParams: Promise<{ error?: string }>;
 };
 
-export default async function AdminOrderDetailPage({ params }: OrderDetailPageProps) {
+export default async function AdminOrderDetailPage({ params, searchParams }: OrderDetailPageProps) {
   const { id } = await params;
+  const { error } = await searchParams;
   const order = await prisma.order.findUnique({
     where: { id },
     include: {
@@ -76,6 +78,7 @@ export default async function AdminOrderDetailPage({ params }: OrderDetailPagePr
 
       <Card className="p-5">
         <h3 className="font-bold">مدیریت وضعیت</h3>
+        {error ? <p role="alert" className="mt-3 text-sm text-destructive">{error}</p> : null}
         <form action={updateOrderStatus} className="mt-4 grid gap-4 md:grid-cols-[220px_1fr_auto]">
           <input type="hidden" name="id" value={order.id} />
           <select
@@ -83,7 +86,7 @@ export default async function AdminOrderDetailPage({ params }: OrderDetailPagePr
             defaultValue={order.status}
             className="h-10 rounded-md border border-input bg-background px-3 text-sm"
           >
-            {adminOrderStatuses.map((status) => (
+            {(order.status === "CANCELLED" ? ["CANCELLED" as const] : adminOrderStatuses).map((status) => (
               <option key={status} value={status}>
                 {formatOrderStatus(status)}
               </option>

@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
+    "test:checkout": "tsx scripts/test-checkout.ts",
     "db:init": "tsx prisma/init-db.ts",
     "prisma:generate": "prisma generate",
     "prisma:migrate": "prisma migrate dev",

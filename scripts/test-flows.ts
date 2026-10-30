@@ -6,7 +6,9 @@
 import { PrismaClient } from "@prisma/client";
 import { hashPassword, verifyPassword } from "../src/lib/auth/password";
 import { validateCoupon } from "../src/lib/coupon";
-import { getPaymentProvider } from "../src/lib/payment/provider";
+import { getPaymentProvider, chooseMockPaymentOutcome } from "../src/lib/payment/provider";
+import { finalizeCheckout } from "../src/lib/payment/checkout";
+import { changeOrderStatus } from "../src/lib/orders";
 
 const BASE = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
 const prisma = new PrismaClient();
@@ -119,116 +121,37 @@ async function testCouponLogic() {
 
 async function testCheckoutFlow() {
   console.log("\n--- Checkout flow ---");
-
-  const product = await prisma.product.findFirst({
-    where: { isPublished: true, inventory: { gt: 0 } }
-  });
-  const shipping = await prisma.shippingMethod.findFirst({ where: { isActive: true } });
-  const coupon = await prisma.coupon.findUnique({ where: { code: "RADMAN10" } });
-
-  if (!product || !shipping) {
-    fail("Checkout setup", "missing product or shipping");
-    return;
-  }
-
-  const subtotal = product.price;
-  const couponResult = coupon ? validateCoupon(coupon, subtotal) : { ok: false as const, error: "no coupon" };
-  const discount = couponResult.ok ? couponResult.discount : 0;
-  const total = Math.max(0, subtotal - discount + shipping.price);
-
-  const order = await prisma.order.create({
-    data: {
-      customerName: "تست خودکار",
-      customerPhone: "09120000000",
-      customerEmail: "test@radman.local",
-      postalCode: "1234567890",
-      address: "تهران، خیابان تست، پلاک ۱",
-      subtotal,
-      discountAmount: discount,
-      shippingCost: shipping.price,
-      total,
-      couponId: couponResult.ok ? coupon!.id : null,
-      couponCode: couponResult.ok ? coupon!.code : null,
-      shippingMethodId: shipping.id,
-      items: {
-        create: [{ productId: product.id, quantity: 1, unitPrice: product.price }]
-      }
-    },
-    include: { items: true }
-  });
-  pass("Order created", order.id);
-
-  const paymentProvider = getPaymentProvider();
-  const paymentResult = await paymentProvider.createPayment({
-    orderId: order.id,
-    amount: total,
-    callbackUrl: `${BASE}/checkout/result`
-  });
-  pass("Mock payment created", paymentResult.authority);
-
-  const payment = await prisma.payment.create({
-    data: {
-      orderId: order.id,
-      provider: paymentResult.provider,
-      authority: paymentResult.authority,
-      amount: total,
-      redirectUrl: paymentResult.redirectUrl
+  const product = await prisma.product.findFirst({ where: { isPublished: true, inventory: { gt: 0 } } });
+  if (!product) { fail("Checkout setup", "no available product"); return; }
+  const user = await prisma.user.create({ data: { name: "Flow test", email: `flow-${Date.now()}@radman.local`, passwordHash: hashPassword("test-only") } });
+  let orderId: string | undefined;
+  try {
+    const order = await prisma.order.create({ data: {
+      userId: user.id, customerName: "Flow test", customerPhone: "09000000000",
+      postalCode: "1234567890", address: "Local flow test address", subtotal: product.price, total: product.price,
+      items: { create: { productId: product.id, quantity: 1, unitPrice: product.price } }
+    } });
+    orderId = order.id;
+    const payment = await getPaymentProvider().createPayment({ orderId: order.id, amount: order.total, callbackUrl: `${BASE}/checkout/result` });
+    await prisma.payment.create({ data: { orderId: order.id, amount: order.total, ...payment } });
+    const pending = await finalizeCheckout(payment.authority, user.id);
+    pending?.pending ? pass("Payment awaits gateway decision") : fail("Payment awaits gateway decision");
+    await chooseMockPaymentOutcome(payment.authority, user.id, "success");
+    const paid = await finalizeCheckout(payment.authority, user.id);
+    paid?.ok ? pass("Actual payment finalization") : fail("Actual payment finalization");
+    const afterPayment = await prisma.product.findUniqueOrThrow({ where: { id: product.id } });
+    afterPayment.inventory === product.inventory - 1 ? pass("Inventory decremented") : fail("Inventory decremented");
+    await prisma.$transaction(tx => changeOrderStatus(tx, order.id, "CANCELLED"));
+    const restored = await prisma.product.findUniqueOrThrow({ where: { id: product.id } });
+    restored.inventory === product.inventory ? pass("Cancellation restores stock") : fail("Cancellation restores stock");
+  } finally {
+    if (orderId) {
+      await prisma.$transaction(tx => changeOrderStatus(tx, orderId!, "CANCELLED"));
+      await cleanup(orderId);
     }
-  });
-
-  const verify = await paymentProvider.verifyPayment(payment.authority!);
-  if (!verify.ok) {
-    fail("Payment verify");
-    await cleanup(order.id);
-    return;
+    await prisma.user.delete({ where: { id: user.id } });
+    pass("Test data cleaned up");
   }
-  pass("Payment verified", verify.referenceId);
-
-  await prisma.$transaction(async (tx) => {
-    for (const item of [{ productId: product.id, quantity: 1 }]) {
-      const updated = await tx.product.updateMany({
-        where: { id: item.productId, inventory: { gte: item.quantity } },
-        data: { inventory: { decrement: item.quantity } }
-      });
-      if (updated.count === 0) throw new Error("INVENTORY_CONFLICT");
-    }
-    await tx.payment.update({
-      where: { id: payment.id },
-      data: { status: "SUCCEEDED", referenceId: verify.referenceId }
-    });
-    await tx.order.update({
-      where: { id: order.id },
-      data: { status: "PAID" }
-    });
-    if (order.couponId) {
-      await tx.coupon.update({
-        where: { id: order.couponId },
-        data: { usedCount: { increment: 1 } }
-      });
-    }
-  });
-  pass("Inventory decremented + order PAID");
-
-  const updatedProduct = await prisma.product.findUnique({ where: { id: product.id } });
-  if (updatedProduct && updatedProduct.inventory === product.inventory - 1) {
-    pass("Inventory count correct", `${product.inventory} → ${updatedProduct.inventory}`);
-  } else {
-    fail("Inventory count correct", `expected ${product.inventory - 1}, got ${updatedProduct?.inventory}`);
-  }
-
-  await prisma.order.update({
-    where: { id: order.id },
-    data: { status: "SHIPPED", trackingCode: "TEST-TRACK-001" }
-  });
-  const tracked = await prisma.order.findFirst({
-    where: { id: order.id, customerPhone: "09120000000" }
-  });
-  tracked?.trackingCode === "TEST-TRACK-001" ? pass("Order tracking update") : fail("Order tracking update");
-
-  await checkPage(`/checkout/result?authority=${payment.authority}`, 200);
-
-  await cleanup(order.id);
-  pass("Test order cleaned up");
 }
 
 async function cleanup(orderId: string) {

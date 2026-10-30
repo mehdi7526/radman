@@ -1,6 +1,7 @@
 "use server";
 
 import { redirect } from "next/navigation";
+import { finalizeCheckout } from "@/lib/payment/checkout";
 import { z } from "zod";
 import { getCurrentUser } from "@/lib/auth/session";
 import { validateCoupon } from "@/lib/coupon";
@@ -39,6 +40,7 @@ export async function createCheckout(input: unknown) {
 
   const payload = parsedPayload.data;
   const user = await getCurrentUser();
+  if (user?.role !== "CUSTOMER") return { ok: false, error: "برای ثبت سفارش وارد حساب کاربری شوید." };
 
   const shippingMethod = await prisma.shippingMethod.findFirst({
     where: { id: payload.shippingMethodId, isActive: true }
@@ -160,137 +162,14 @@ export async function createCheckout(input: unknown) {
 }
 
 export async function verifyCheckout(authority: string | null) {
-  if (!authority) {
-    return null;
+  if (!authority) return null;
+  const user = await getCurrentUser();
+  if (!user) return null;
+  const result = await finalizeCheckout(authority, user.id);
+  if (result?.ok && "customerName" in result && result.customerName) {
+    const { notifyOrderPaid } = await import("@/lib/notifications");
+    await notifyOrderPaid({ id: result.orderId, customerName: result.customerName, total: result.amount, referenceId: result.referenceId });
+    await notifyCustomerOrderConfirmation({ id: result.orderId, customerEmail: result.customerEmail, customerPhone: result.customerPhone });
   }
-
-  const payment = await prisma.payment.findFirst({
-    where: { authority },
-    include: {
-      order: {
-        include: {
-          items: true
-        }
-      }
-    }
-  });
-
-  if (!payment) {
-    return null;
-  }
-
-  if (payment.status === "SUCCEEDED") {
-    return {
-      ok: true,
-      orderId: payment.orderId,
-      referenceId: payment.referenceId,
-      amount: payment.amount,
-      alreadyVerified: true
-    };
-  }
-
-  if (payment.status === "FAILED") {
-    return {
-      ok: false,
-      orderId: payment.orderId,
-      referenceId: payment.referenceId,
-      amount: payment.amount
-    };
-  }
-
-  const result = await getPaymentProvider().verifyPayment(authority);
-
-  if (!result.ok) {
-    await prisma.payment.update({
-      where: { id: payment.id },
-      data: { status: "FAILED" }
-    });
-    await prisma.order.update({
-      where: { id: payment.orderId },
-      data: { status: "CANCELLED" }
-    });
-
-    return {
-      ok: false,
-      orderId: payment.orderId,
-      amount: payment.amount
-    };
-  }
-
-  try {
-    await prisma.$transaction(async (tx) => {
-      for (const item of payment.order.items) {
-        const updated = await tx.product.updateMany({
-          where: {
-            id: item.productId,
-            inventory: { gte: item.quantity }
-          },
-          data: {
-            inventory: { decrement: item.quantity }
-          }
-        });
-
-        if (updated.count === 0) {
-          throw new Error("INVENTORY_CONFLICT");
-        }
-      }
-
-      await tx.payment.update({
-        where: { id: payment.id },
-        data: { status: "SUCCEEDED", referenceId: result.referenceId }
-      });
-
-      await tx.order.update({
-        where: { id: payment.orderId },
-        data: { status: "PAID" }
-      });
-
-      if (payment.order.couponId) {
-        await tx.coupon.update({
-          where: { id: payment.order.couponId },
-          data: { usedCount: { increment: 1 } }
-        });
-      }
-    });
-  } catch (error) {
-    if (error instanceof Error && error.message === "INVENTORY_CONFLICT") {
-      await prisma.payment.update({
-        where: { id: payment.id },
-        data: { status: "FAILED" }
-      });
-      await prisma.order.update({
-        where: { id: payment.orderId },
-        data: { status: "CANCELLED" }
-      });
-      return {
-        ok: false,
-        orderId: payment.orderId,
-        amount: payment.amount,
-        error: "موجودی محصولات کافی نبود و سفارش لغو شد."
-      };
-    }
-
-    throw error;
-  }
-
-  const { notifyOrderPaid } = await import("@/lib/notifications");
-  await notifyOrderPaid({
-    id: payment.orderId,
-    customerName: payment.order.customerName,
-    total: payment.amount,
-    referenceId: result.referenceId
-  });
-
-  await notifyCustomerOrderConfirmation({
-    id: payment.orderId,
-    customerEmail: payment.order.customerEmail,
-    customerPhone: payment.order.customerPhone
-  });
-
-  return {
-    ok: true,
-    orderId: payment.orderId,
-    referenceId: result.referenceId,
-    amount: payment.amount
-  };
+  return result;
 }
